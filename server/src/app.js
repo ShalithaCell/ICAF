@@ -1,6 +1,10 @@
 const Koa = require('koa');
 const koaBody = require('koa-body');
 const router = require('./api');
+const { databaseInitializer } = require('./services');
+
+// init the database connection.
+databaseInitializer();
 
 const app = new Koa();
 
