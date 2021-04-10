@@ -1,12 +1,12 @@
-function AuthRequestType()
+function CredentialType()
 {
     this.email = '';
     this.password = '';
 }
 
-AuthRequestType.prototype.isValid = function()
+CredentialType.prototype.isValid = function()
 {
     return this.email.length > 0 && this.password.length > 0;
 };
 
-module.exports = AuthRequestType;
+module.exports = CredentialType;
