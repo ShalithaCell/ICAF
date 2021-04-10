@@ -1,7 +1,7 @@
-const databaseInitializer = require('./database');
-const userService = require('./user');
+const dbContext = require('./database/applicationDbContext');
+const userService = require('./user/user.service');
 
 module.exports = {
-    databaseInitializer,
+    dbContext,
     userService,
 };

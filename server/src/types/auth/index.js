@@ -1,4 +1,4 @@
-const CredentialType = require('./credential');
+const CredentialType = require('./credential/credentialType');
 
 module.exports = {
     CredentialType,

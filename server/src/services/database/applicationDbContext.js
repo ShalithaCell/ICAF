@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { connectionString } = require('../../config');
 
-const database = () =>
+const dbContext = () =>
 {
     mongoose.connect(connectionString,
         {
@@ -19,4 +19,4 @@ const database = () =>
     mongoose.connection.on('error', console.error);
 };
 
-module.exports = database;
+module.exports = dbContext;
