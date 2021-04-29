@@ -8,19 +8,13 @@ dbContext();
 
 const app = new Koa();
 
-app.use(koaBody());
-
-// register generic error handler middleware
-app.use(exceptionService.errorHandler);
-
-// register json error handler middleware
-app.use(exceptionService.jsonErrorHandler);
-
-// Use the Router on the sub route /books
-app.use(router());
-
-// Bootstrap the server
-app.listen(5000, () =>
-{
-    console.log('server stared with port 5000');
-});
+app
+    .use(koaBody())
+    .use(exceptionService.errorHandler) // register generic error handler middleware
+    .use(exceptionService.jsonErrorHandler) // register json error handler middleware
+    .use(router()) // Use the Router on the sub routes
+    // Bootstrap the server
+    .listen(process.env.PORT || 5000, () =>
+    {
+        console.log('server stared with port 5000');
+    });
