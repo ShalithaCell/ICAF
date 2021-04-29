@@ -1,7 +1,8 @@
 const Router = require('koa-router');
 const StatusCodes = require('http-status-codes');
-const { CredentialType } = require('../../types/auth');
+const { CredentialType } = require('../../types');
 const { userService } = require('../../services');
+const { authenticate } = require('../../middlewares');
 
 // Prefix all routes with: /auth
 const router = new Router({
@@ -27,7 +28,10 @@ router.post('/', async (ctx, next) =>
 
         ctx.response.status = StatusCodes.OK;
         ctx.body = user;
+
+        authenticate(this, user);
     }
+
     next().then();
 });
 

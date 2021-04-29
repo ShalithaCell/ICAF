@@ -1,6 +1,6 @@
 const { User } = require("../../models");
 
-const getUserFromDb = async () =>
+const getUserFromDb = async (email, password) =>
 {
     const data = await User.find({});
 
