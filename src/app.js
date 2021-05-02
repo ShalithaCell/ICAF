@@ -20,7 +20,7 @@ app.use(exceptionService.jsonErrorHandler);
 app.use(router());
 
 // Bootstrap the server
-app.listen(5000, () =>
+app.listen(process.env.PORT || 5000, () =>
 {
     console.log('server stared with port 5000');
 });
