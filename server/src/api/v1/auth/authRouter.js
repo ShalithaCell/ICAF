@@ -1,12 +1,13 @@
 const Router = require('koa-router');
 const StatusCodes = require('http-status-codes');
-const { CredentialType } = require('../../types');
-const { userService } = require('../../services');
-const { authenticate } = require('../../middlewares');
+const { CredentialType } = require('../../../types');
+const { userService } = require('../../../services');
+const { authenticate } = require('../../../middlewares');
+const { version } = require('../../../config');
 
 // Prefix all routes with: /auth
 const router = new Router({
-    prefix : '/auth',
+    prefix : `${version.v1}/auth`,
 });
 
 // Routes will go here
