@@ -1,7 +1,7 @@
 const Router = require('koa-router');
 const StatusCodes = require('http-status-codes');
 const { CredentialType } = require('../../../types');
-const { authenticate } = require('../../../middlewares');
+const { authenticate, koaJwt } = require('../../../middlewares');
 const { version } = require('../../../config');
 
 // Prefix all routes with: /auth
@@ -26,7 +26,14 @@ router.post('/', async (ctx, next) =>
         return;
     }
 
-    await authenticate(ctx, request);
+    await authenticate.passwordSignInAsync(ctx, request);
+    next().then();
+});
+
+router.get('/check', koaJwt, async (ctx, next) =>
+{
+    ctx.response.status = StatusCodes.OK;
+    ctx.body = 'Access Granted';
     next().then();
 });
 

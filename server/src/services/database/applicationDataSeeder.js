@@ -7,7 +7,7 @@ const dataManagerService = require('../system/dataManager/dataManager.service');
 const ApplicationDataSeeder = {
     seedRoles : async () =>
     {
-        fs.readFile(path.resolve('data/roles.json'), (err, data) =>
+        await fs.readFile(path.resolve('data/roles.json'), (err, data) =>
         {
             if (err) throw err;
             const roles = JSON.parse(data);
