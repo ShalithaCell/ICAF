@@ -18,25 +18,32 @@ app
     .use(exceptionService.jsonErrorHandler) // register json error handler middleware
     .use(cors()) // allowed CORS
     .use(router()) // Use the Router on the sub routes
-    .use(KoaStatic('public')) // server statics
-    .use(logger()) // enable logs
-    // .use(loggerFile('./log/')) // log to file
-    // Bootstrap the server
-    .listen(process.env.PORT || 5000, () =>
-    {
-        console.log('server stared with port 5000');
+    .use(KoaStatic('public')); // server statics
+// .use(logger()); // enable logs
+// .use(loggerFile('./log/')) // log to file
+// Bootstrap the server
 
-        // application default data seeder
-        applicationDataSeeder.seedRoles()
-            .then((r) => console.info('role data seeder executed'));
-        applicationDataSeeder.seedUsers()
-            .then((r) => console.info('user data seeder executed'));
+const server = app.listen(process.env.PORT || 5000, async () =>
+{
+    /**
+     * Note
+     * If you are running test cases. Please comment below code snippets.
+     * Otherwise errors are popped due to Async.
+     */
 
-        console.log();
-        console.log();
-        console.log('=======================Server StartUp===========================');
-        console.log('For more info :');
-        console.log('\x1b[33m\x1b[4m%s\x1b[0m', 'http://localhost:5000/api/');
-        console.log('=====================================================================');
-        console.log();
-    });
+    console.log('server stared with port 5000');
+
+    // application default data seeder
+    await applicationDataSeeder.seedRoles();
+    await applicationDataSeeder.seedUsers();
+
+    console.log();
+    console.log();
+    console.log('=======================Server StartUp===========================');
+    console.log('For more info :');
+    console.log('\x1b[33m\x1b[4m%s\x1b[0m', 'http://localhost:5000/api/');
+    console.log('=====================================================================');
+    console.log();
+});
+
+module.exports = server;
