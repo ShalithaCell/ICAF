@@ -15,4 +15,5 @@ module.exports = {
     accountConfirmationURL : process.env.ACCOUNT_CONFIRMATION_URL,
     siteName               : process.env.SITE_NAME,
     siteUrl                : process.env.SITE_URL,
+    refreshTokenExpireTime : process.env.REFRESH_TOKEN_LIFE_TIME || 30,
 };

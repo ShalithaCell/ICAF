@@ -37,4 +37,16 @@ router.get('/check', koaJwt, async (ctx, next) =>
     next().then();
 });
 
+router.post('/refresh-token', async (ctx, next) =>
+{
+    await authenticate.refreshTokenAsync(ctx);
+    next().then();
+});
+
+router.post('/revoke-token', async (ctx, next) =>
+{
+    await authenticate.revokeToken(ctx);
+    next().then();
+});
+
 module.exports = router;

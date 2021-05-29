@@ -1,5 +1,6 @@
-const { User } = require("../../models");
-const { NewUser } = require('../../types');
+const moment = require('moment');
+const { User, RefreshToken } = require("../../models");
+const { NewUser, RefreshTokenModel } = require('../../types');
 const RoleService = require('../userRole/userRole.service');
 
 const UserService = {
@@ -113,6 +114,63 @@ const UserService = {
         {
             console.log(e);
         }
+    },
+    saveRefreshToken : async (tokenData) =>
+    {
+        const token = new RefreshToken({
+            token           : tokenData.token,
+            expires         : tokenData.expires,
+            created         : tokenData.created,
+            createdByIp     : tokenData.createdByIp,
+            revoked         : tokenData.revoked,
+            revokedByIp     : tokenData.revokedByIp,
+            replacedByToken : tokenData.replacedByToken,
+            user            : tokenData.userId,
+        });
+
+        await token.save();
+    },
+    checkRefreshToken : async (token) =>
+    {
+        const tokenData = await RefreshToken.findOne({ token }).populate('user');
+
+        if (!tokenData)
+        {
+            return null;
+        }
+
+        const tokenModel = Object.setPrototypeOf(
+            tokenData.toObject(), RefreshTokenModel.prototype,
+        );
+
+        if (!tokenModel.isActive())
+        {
+            return null;
+        }
+
+        return tokenData;
+    },
+    replaceRefreshToken : async (token, newToken, ipAddress) =>
+    {
+        await RefreshToken.updateOne({ token }, {
+            revoked         : moment(),
+            revokedByIp     : ipAddress,
+            replacedByToken : newToken,
+        }, (err, affected, resp) =>
+        {
+            if (err) throw err;
+        });
+    },
+    revokeToken : async (token, ipAddress) =>
+    {
+        await RefreshToken.updateOne({ token }, {
+            revoked         : moment(),
+            revokedByIp     : ipAddress,
+            replacedByToken : null,
+        }, (err, affected, resp) =>
+        {
+            if (err) throw err;
+        });
     },
 };
 

@@ -12,6 +12,10 @@ const UserSchema = new Schema({
         type : Schema.Types.ObjectId,
         ref  : 'role',
     },
+    refreshTokens : [ {
+        type : Schema.Types.ObjectId,
+        ref  : 'refreshToken',
+    } ],
 }, { collection: 'user' });
 
 module.exports = mongoose.model('user', UserSchema);
