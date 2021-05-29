@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const moment = require('moment');
+const { refreshTokenExpireTime } = require('../../../config');
 
 const dataManagerService = {
     generateRandomString : (length) =>
@@ -34,6 +36,22 @@ const dataManagerService = {
         const isValid = bcrypt.compareSync(password, hash);
 
         return isValid;
+    },
+    generateRefreshToken : async (ipAddress) =>
+    {
+        const uniqueKey = await dataManagerService.generateUniqueToken();
+
+        const createTime = moment();
+        const expireTime = moment().add(refreshTokenExpireTime, 'minutes');
+
+        return {
+            token       : uniqueKey,
+            expiresTime : expireTime,
+            expires     : moment(expireTime).format("DD MMM YYYY hh:mm a"),
+            createTime,
+            creates     : moment(createTime).format("DD MMM YYYY hh:mm a"),
+            ipAddress,
+        };
     },
 };
 
