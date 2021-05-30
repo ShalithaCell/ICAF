@@ -16,32 +16,46 @@ afterAll(async () =>
     console.log('server closed!');
 });
 
-// describe('check application route works', () =>
-// {
-//     test('get info route GET /', async () =>
-//     {
-//         const response = await request(server).get('/api/');
-//
-//         expect(response.status).toEqual(200);
-//     });
-// });
-
-// test('check application route works', async () =>
-// {
-//     const response = await request.get('/api/');
-//
-//     expect(response.status).toEqual(200);
-// });
-
-describe("When testing the server.js", () =>
+describe('When testing the server.js', () =>
 {
     const agent = request.agent(server);
 
-    it("Should connect successfully and be able to return a response", async () =>
-    {
-        const response = await request(server).get('/api/');
+    it('Should connect successfully and be able to return a response',
+        async () => new Promise((resolve) =>
+        {
+            request(server)
+                .get('/api/')
+                .set('Accept', 'application/json')
+                .retry(2)
+                .expect('Content-Type', /json/)
+                .end((err, res) =>
+                {
+                    expect(res.status).toBe(200);
 
-        expect(response.status).toBe(200);
-        console.log(response.text);
-    });
+                    resolve();
+                });
+        }), 30000);
+});
+
+describe('When testing the login', () =>
+{
+    const agent = request.agent(server);
+
+    it('responds with json', async () => new Promise((resolve) =>
+    {
+        request(server)
+            .post('/api/v1/auth/')
+            .send({ email: 'admin@gmail.com', password: "Shalitha123456" })
+            .set('Accept', 'application/json')
+            .retry(2)
+            .expect('Content-Type', /json/)
+            .end((err, res) =>
+            {
+                expect(res.status).toBe(200);
+
+                expect(res.body.success).toBe(true);
+
+                resolve();
+            });
+    }), 30000);
 });
