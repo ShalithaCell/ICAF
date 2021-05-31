@@ -5,20 +5,15 @@ const owasp = require('owasp-password-strength-test');
 const { NewUser, Response } = require("../../../types");
 const { userService, emailNotificationService, TokenService, dataManagerService } = require('../../../services');
 const { version } = require('../../../config');
+const { koaJwt } = require('../../../middlewares');
 
 // Prefix all routes with: /user
 const router = new Router({
     prefix : `${version.v1}/user`,
 });
 
-// Routes will go here
-
-// user sign in method
-router.post('/', async (ctx, next) =>
+const createUser = async (ctx, request) =>
 {
-    // check data validation
-    const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
-
     const response = new Response();
 
     // check data validation
@@ -33,7 +28,6 @@ router.post('/', async (ctx, next) =>
         };
 
         ctx.body = response;
-        next().then();
 
         return;
     }
@@ -50,7 +44,6 @@ router.post('/', async (ctx, next) =>
         };
 
         ctx.body = response;
-        next().then();
 
         return;
     }
@@ -69,7 +62,6 @@ router.post('/', async (ctx, next) =>
         };
 
         ctx.body = response;
-        next().then();
 
         return;
     }
@@ -91,7 +83,6 @@ router.post('/', async (ctx, next) =>
         };
 
         ctx.body = response;
-        next().then();
 
         return;
     }
@@ -108,7 +99,6 @@ router.post('/', async (ctx, next) =>
         };
 
         ctx.body = response;
-        next().then();
 
         return;
     }
@@ -127,6 +117,53 @@ router.post('/', async (ctx, next) =>
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
+};
+
+// user sign in methods
+router.post('/create/user', async (ctx, next) =>
+{
+    // check data validation
+    const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
+
+    request.role = 'user';
+
+    await createUser(ctx, request);
+
+    next().then();
+});
+
+router.post('/create/reviewer', async (ctx, next) =>
+{
+    // check data validation
+    const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
+
+    request.role = 'reviewer';
+
+    await createUser(ctx, request);
+
+    next().then();
+});
+
+router.post('/create/editor', koaJwt, async (ctx, next) =>
+{
+    // check data validation
+    const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
+
+    request.role = 'editor';
+
+    await createUser(ctx, request);
+
+    next().then();
+});
+
+router.post('/create/admin', koaJwt, async (ctx, next) =>
+{
+    // check data validation
+    const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
+
+    request.role = 'admin';
+
+    await createUser(ctx, request);
 
     next().then();
 });
