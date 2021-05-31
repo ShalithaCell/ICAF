@@ -4,6 +4,7 @@ const userService = require('./user/user.service');
 const exceptionService = require('./exception/exception.service');
 const dataManagerService = require('./system/dataManager/dataManager.service');
 const RoleService = require('./userRole/userRole.service');
+const HomepageService = require('./homepage/homepage.service');
 
 module.exports = {
     dbContext,
@@ -12,4 +13,5 @@ module.exports = {
     exceptionService,
     dataManagerService,
     RoleService,
+    HomepageService,
 };
