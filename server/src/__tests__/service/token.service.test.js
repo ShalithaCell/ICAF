@@ -12,5 +12,5 @@ describe("When testing the token service,", () =>
         const valid = re.test(response);
 
         expect(valid).toBeTruthy();
-    });
+    }, 30000);
 });

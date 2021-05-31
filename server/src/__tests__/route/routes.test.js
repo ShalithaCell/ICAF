@@ -4,11 +4,9 @@ const server = require('../../app');
 
 beforeAll(async () =>
 {
-    // do something before anything else runs
-    // await server.serverStart;
-    // request = supertest(server);
     console.log('Jest starting!');
 });
+
 // close the server after each test
 afterAll(async () =>
 {
@@ -74,13 +72,12 @@ describe('When testing the user create', () =>
         const randomEmail = `test123456${Date.now()}@gmail.com`;
 
         request(server)
-            .post('/api/v1/user/')
+            .post('/api/v1/user/create/user/')
             .send({
                 name     : 'testingUser',
                 password : "Shalitha@123456",
                 email    : randomEmail,
-                phone    : "0711234567",
-                role     : "user" })
+                phone    : "0711234567" })
             .set('Accept', 'application/json')
             .retry(2)
             .expect('Content-Type', /json/)
@@ -104,13 +101,12 @@ describe('When testing the user create', () =>
         const randomEmail = `test123456${Date.now()}@gmail.com`;
 
         request(server)
-            .post('/api/v1/user/')
+            .post('/api/v1/user/create/reviewer/')
             .send({
                 name     : 'testingUser',
                 password : "Shalitha@123456",
                 email    : randomEmail,
-                phone    : "0711234567",
-                role     : "user" })
+                phone    : "0711234567" })
             .set('Accept', 'application/json')
             .retry(2)
             .expect('Content-Type', /json/)
@@ -124,7 +120,6 @@ describe('When testing the user create', () =>
             });
     }), 30000);
 });
-
 
 describe('When testing the role fetching', () =>
 {
