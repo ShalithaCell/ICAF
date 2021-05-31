@@ -3,6 +3,7 @@ const AuthenticateUser = require('./auth/authenticateUser/authenticateUser');
 const NewUser = require('./auth/newUser/newUser');
 const Response = require('./response/response');
 const RefreshTokenModel = require('./auth/refreshToken/refreshToken');
+const HomepageConfig = require('./homepageConfig/homepageConfig');
 
 module.exports = {
     CredentialType,
@@ -10,4 +11,5 @@ module.exports = {
     NewUser,
     Response,
     RefreshTokenModel,
+    HomepageConfig,
 };
