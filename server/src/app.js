@@ -25,12 +25,6 @@ app
 
 const server = app.listen(process.env.PORT || 5000, async () =>
 {
-    /**
-     * Note
-     * If you are running test cases. Please comment below code snippets.
-     * Otherwise errors are popped due to Async.
-     */
-
     console.log('server stared with port 5000');
 
     // application default data seeder
