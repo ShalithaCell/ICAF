@@ -7,7 +7,7 @@
     "verbose": true
   },
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --verbose --coverage --watchAll --runInBand",
     "start": "nodemon ./src/app.js"
   },
   "author": "shalitha senanayaka",
