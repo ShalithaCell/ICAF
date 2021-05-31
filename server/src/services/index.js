@@ -4,6 +4,9 @@ const userService = require('./user/user.service');
 const exceptionService = require('./exception/exception.service');
 const dataManagerService = require('./system/dataManager/dataManager.service');
 const RoleService = require('./userRole/userRole.service');
+const TokenService = require('./user/token.service');
+const mailService = require('./system/mailer/nodeMailer.service');
+const emailNotificationService = require('./system/notification/emailNotification.service');
 const HomepageService = require('./homepage/homepage.service');
 
 module.exports = {
@@ -13,5 +16,8 @@ module.exports = {
     exceptionService,
     dataManagerService,
     RoleService,
+    TokenService,
+    mailService,
+    emailNotificationService,
     HomepageService,
 };

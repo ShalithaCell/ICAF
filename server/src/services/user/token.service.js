@@ -17,7 +17,7 @@ const TokenService = {
         tokenObj.save((err) =>
         {
             // TODO : send error log
-            console.error(err);
+            // console.error(err);
         });
 
         return tokenObj;

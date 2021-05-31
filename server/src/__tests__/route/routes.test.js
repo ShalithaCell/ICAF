@@ -16,32 +16,133 @@ afterAll(async () =>
     console.log('server closed!');
 });
 
-// describe('check application route works', () =>
-// {
-//     test('get info route GET /', async () =>
-//     {
-//         const response = await request(server).get('/api/');
-//
-//         expect(response.status).toEqual(200);
-//     });
-// });
-
-// test('check application route works', async () =>
-// {
-//     const response = await request.get('/api/');
-//
-//     expect(response.status).toEqual(200);
-// });
-
-describe("When testing the server.js", () =>
+afterEach(async () =>
 {
-    const agent = request.agent(server);
+    await server.close();
+});
 
-    it("Should connect successfully and be able to return a response", async () =>
+describe('When testing the server.js', () =>
+{
+    // const agent = request.agent(server);
+
+    it('Should connect successfully and be able to return a response',
+        async () => new Promise((resolve) =>
+        {
+            request(server)
+                .get('/api/')
+                .set('Accept', 'application/json')
+                .retry(2)
+                .expect('Content-Type', /json/)
+                .end((err, res) =>
+                {
+                    expect(res.status).toBe(200);
+
+                    resolve();
+                });
+        }), 30000);
+});
+
+describe('When testing the login', () =>
+{
+    // const agent = request.agent(server);
+
+    it('responds with json', async () => new Promise((resolve) =>
     {
-        const response = await request(server).get('/api/');
+        request(server)
+            .post('/api/v1/auth/')
+            .send({ email: 'admin@gmail.com', password: "Shalitha123456" })
+            .set('Accept', 'application/json')
+            .retry(2)
+            .expect('Content-Type', /json/)
+            .end((err, res) =>
+            {
+                expect(res.status).toBe(200);
 
-        expect(response.status).toBe(200);
-        console.log(response.text);
-    });
+                expect(res.body.success).toBe(true);
+
+                resolve();
+            });
+    }), 30000);
+});
+
+describe('When testing the user create', () =>
+{
+    // const agent = request.agent(server);
+
+    it('responds with json', async () => new Promise((resolve) =>
+    {
+        const randomEmail = `test123456${Date.now()}@gmail.com`;
+
+        request(server)
+            .post('/api/v1/user/')
+            .send({
+                name     : 'testingUser',
+                password : "Shalitha@123456",
+                email    : randomEmail,
+                phone    : "0711234567",
+                role     : "user" })
+            .set('Accept', 'application/json')
+            .retry(2)
+            .expect('Content-Type', /json/)
+            .end((err, res) =>
+            {
+                expect(res.status).toBe(200);
+
+                expect(res.body.success).toBe(true);
+                expect(res.body.message.includes(randomEmail)).toBe(true);
+                resolve();
+            });
+    }), 30000);
+});
+
+describe('When testing the user create', () =>
+{
+    // const agent = request.agent(server);
+
+    it('responds with json', async () => new Promise((resolve) =>
+    {
+        const randomEmail = `test123456${Date.now()}@gmail.com`;
+
+        request(server)
+            .post('/api/v1/user/')
+            .send({
+                name     : 'testingUser',
+                password : "Shalitha@123456",
+                email    : randomEmail,
+                phone    : "0711234567",
+                role     : "user" })
+            .set('Accept', 'application/json')
+            .retry(2)
+            .expect('Content-Type', /json/)
+            .end((err, res) =>
+            {
+                expect(res.status).toBe(200);
+
+                expect(res.body.success).toBe(true);
+                expect(res.body.message.includes(randomEmail)).toBe(true);
+                resolve();
+            });
+    }), 30000);
+});
+
+
+describe('When testing the role fetching', () =>
+{
+    // const agent = request.agent(server);
+
+    it('responds with json', async () => new Promise((resolve) =>
+    {
+        request(server)
+            .get('/api/v1/role/')
+            .set('Accept', 'application/json')
+            .retry(2)
+            .expect('Content-Type', /json/)
+            .end((err, res) =>
+            {
+                expect(res.status).toBe(200);
+
+                expect(res.body.success).toBe(true);
+                resolve();
+            });
+    }), 30000);
 });
