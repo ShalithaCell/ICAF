@@ -213,6 +213,7 @@
                 "declaration": false,
                 "assignment": false,
                 "return": true
-            }]
+            }],
+        "react/jsx-props-no-spreading": "off"
     }
 }
