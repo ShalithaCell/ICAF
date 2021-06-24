@@ -1,11 +1,18 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Login, Home } from './scenes/index';
 
 function App()
 {
 	return (
-		<div className='App'>
-			<h1>Hello World !</h1>
-		</div>
+		<Router>
+			<div>
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route path='/login' component={Login} />
+				</Switch>
+			</div>
+		</Router>
 	);
 }
 

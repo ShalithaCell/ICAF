@@ -15,18 +15,19 @@ module.exports = (env) =>
 		},
 		output : {
 			path       : path.resolve(__dirname, 'build'),
-			publicPath : '/',
 			filename   : 'bundle.js',
+			publicPath : '/',
 		},
 		devServer : {
-			contentBase : "./build",
+			contentBase        : "./build",
+			historyApiFallback : true,
 		},
 		module : {
 			rules : [
 				{
 					test    : /\.(js|jsx)$/,
 					exclude : /node_modules/,
-					use     : [ 'babel-loader', 'eslint-loader' ],
+					use     : [ 'babel-loader' ],
 				},
 				{
 					test : /\.less$/,
@@ -34,6 +35,32 @@ module.exports = (env) =>
 						'style-loader',
 						'css-loader',
 						'less-loader',
+					],
+				},
+				{
+					test : /\.scss$/,
+					use  : [
+						'style-loader',
+						'css-loader',
+						'sass-loader',
+					],
+				},
+				{
+					test : /\.css$/,
+					use  : [
+						'style-loader',
+						'css-loader',
+					],
+				},
+				{
+					test : /\.(jpe?g|gif|png|svg)$/i,
+					use  : [
+						{
+							loader  : 'url-loader',
+							options : {
+								limit : 10000,
+							},
+						},
 					],
 				},
 			],
