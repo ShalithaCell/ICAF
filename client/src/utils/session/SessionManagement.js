@@ -16,6 +16,22 @@ const SessionManagement = {
 			return localStorage.getItem(IDENTIFICATION_STORAGE);
 		}
 	},
+	GetSetSession : (obj) =>
+	{
+		let sessionObj = {};
+		const session = SessionManagement.GetSession();
+
+		if (!session)
+		{
+			sessionObj = Object.assign(sessionObj, obj);
+		}
+		else
+		{
+			sessionObj = Object.assign(session, obj);
+		}
+
+		SessionManagement.SetSession(sessionObj);
+	},
 	DestroySession : () =>
 	{
 		localStorage.removeItem(IDENTIFICATION_STORAGE);

@@ -1,7 +1,2 @@
-import SessionManagement from "./session/SessionManagement";
-import communicationService from "./communication/communication.service";
-
-export default {
-	SessionManagement,
-	communicationService,
-};
+export { default as SessionManagement } from "./session/SessionManagement";
+export { default as communicationService } from "./communication/communication.service";

@@ -8,4 +8,4 @@ export const SECRET_KEY = 'cbM2vLOTDUsdasdewaffsdf54s5d1f5e4sR';
 export const IDENTIFICATION_STORAGE = '548415148453168625468465686';
 
 // API end-points
-export const LOGIN_ENDPOINT = `${BASE_URL}auth`;
+export const LOGIN_ENDPOINT = `${BASE_URL}v1/auth`;

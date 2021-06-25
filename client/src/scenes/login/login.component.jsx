@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,12 +11,62 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import Alert from '@material-ui/lab/Alert';
 import { Copyright } from '../../components/organisms';
 import useStyles from './login.styles';
+import { communicationService } from '../../utils';
+import { loginSuccess } from '../../utils/store/user/user';
 
 export default function Login()
 {
 	const classes = useStyles();
+	const dispatch = useDispatch();
+
+	const [ formState, setFormState ] = useState({
+		username : "",
+		password : "",
+	});
+
+	const [ errorState, setErrorState ] = useState({
+		showUnauthorized : false,
+	});
+
+	const handleChange = (e) =>
+	{
+		setFormState({ ...formState, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = async (e) =>
+	{
+		e.preventDefault();
+
+		try
+		{
+			const { username, password } = formState;
+
+			switch (e.currentTarget.id)
+			{
+			case "login":
+				console.log('controller login invoked');
+				communicationService.login({ email: username, password },
+					(res) =>
+					{
+						dispatch(loginSuccess(res));
+					}, (err) =>
+					{
+						setErrorState({ showUnauthorized: true });
+					});
+				break;
+			default:
+				console.log('controller not found');
+			}
+		}
+		catch (error)
+		{
+			console.error(error);
+		}
+	};
 
 	return (
 		<Container component='main' maxWidth='xs'>
@@ -34,11 +84,13 @@ export default function Login()
 						margin='normal'
 						required
 						fullWidth
-						id='email'
+						id='username'
 						label='Email Address'
-						name='email'
+						name='username'
 						autoComplete='email'
 						autoFocus
+						value={formState.username}
+						onChange={(e) => handleChange(e)}
 					/>
 					<TextField
 						variant='outlined'
@@ -50,17 +102,27 @@ export default function Login()
 						type='password'
 						id='password'
 						autoComplete='current-password'
+						value={formState.password}
+						onChange={(e) => handleChange(e)}
 					/>
 					<FormControlLabel
 						control={<Checkbox value='remember' color='primary' />}
 						label='Remember me'
 					/>
+					{
+						errorState.showUnauthorized
+							? <Alert severity='error'>User name or Password is incorrect !</Alert>
+							: null
+					}
+
 					<Button
-						type='submit'
+						type='button'
 						fullWidth
 						variant='contained'
 						color='primary'
 						className={classes.submit}
+						id='login'
+						onClick={(e) => handleSubmit(e)}
 					>
 						Sign In
 					</Button>
