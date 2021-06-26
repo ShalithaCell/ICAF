@@ -32,6 +32,12 @@ axios.interceptors.response.use(
 		// debugger;
 		const originalRequest = error.config;
 
+		// skip login 401
+		if (originalRequest.url.includes('api/v1/auth'))
+		{
+			return Promise.reject(error);
+		}
+
 		const localData = JSON.parse(SessionManagement.GetSession());
 
 		if (!localData) return Promise.reject(error.data ? error.data : error);
