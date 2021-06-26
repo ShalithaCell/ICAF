@@ -27,13 +27,13 @@ const slice = createSlice({
 
 export default slice.reducer;
 // Actions
-export const { loginSuccess, logoutSuccess } = slice.actions;
+const { loginSuccess, logoutSuccess } = slice.actions;
 
-export const login = ({ username, password }) => async (dispatch) =>
+export const loginAction = ({ data }) => async (dispatch) =>
 {
 	try
 	{
-		dispatch(loginSuccess({ username }));
+		dispatch(loginSuccess(data.user));
 	}
 	catch (e)
 	{
