@@ -1,5 +1,5 @@
 // apiConfig url
-export const BASE_URL = 'http://localhost:5000/api/';
+export const BASE_URL = 'https://icaf.herokuapp.com/api/';
 
 // Encryption secret key
 export const SECRET_KEY = 'cbM2vLOTDUsdasdewaffsdf54s5d1f5e4sR';
