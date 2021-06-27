@@ -4,6 +4,7 @@ const NewUser = require('./auth/newUser/newUser');
 const Response = require('./response/response');
 const RefreshTokenModel = require('./auth/refreshToken/refreshToken');
 const HomepageConfig = require('./homepageConfig/homepageConfig');
+const PaperSubmissions = require('./paperSubmissions/paperSubmission');
 
 module.exports = {
     CredentialType,
@@ -12,4 +13,5 @@ module.exports = {
     Response,
     RefreshTokenModel,
     HomepageConfig,
+    PaperSubmissions,
 };
