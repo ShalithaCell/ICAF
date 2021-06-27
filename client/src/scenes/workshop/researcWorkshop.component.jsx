@@ -7,7 +7,7 @@ export default function ResearchWorkShop()
 {
 	return (
 		<div className='container'>
-			<h2>Publish Research paper</h2>
+			<h2>Publish Workshops</h2>
 			<br />
 			<form>
 
