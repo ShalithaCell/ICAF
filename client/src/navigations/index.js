@@ -12,6 +12,8 @@ import {
 	ResearchWorkShop,
 	ResearchWorkShopView,
 	SettingsView,
+	ChangesList,
+	CommonChangesView,
 } from '../scenes';
 
 const routes = [
@@ -19,10 +21,10 @@ const routes = [
 		path     : 'app',
 		element  : <DashboardLayout />,
 		children : [
-			{ path: 'account', element: <SettingsView /> },
+			{ path: 'changes', element: <ChangesList /> },
 			{ path: 'customers', element: <SettingsView /> },
 			{ path: 'dashboard', element: <SettingsView /> },
-			{ path: 'products', element: <SettingsView /> },
+			{ path: 'changes/view', element: <CommonChangesView /> },
 			{ path: 'settings', element: <SettingsView /> },
 			{ path: '*', element: <Navigate to='/404' /> },
 		],
