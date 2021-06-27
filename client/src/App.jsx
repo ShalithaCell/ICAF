@@ -16,21 +16,6 @@ function App()
 			<GlobalStyles />
 			{routing}
 		</ThemeProvider>
-		// <Router>
-		// 	<div>
-		// 		<NavbarComponent />
-		// 		<Switch>
-		// 			<Route exact path='/' component={Home} />
-		// 			<Route path='/login' component={Login} />
-		// 			<Route path='/research/publish' component={ResearchPaperPublish} />
-		// 			<Route path='/research/view' component={ResearchPaperView} />
-		// 			<Route path='/researchWorkshop/publish' component={ResearchWorkShop} />
-		// 			<Route path='/researchWorkshopView/view' component={ResearchWorkShopView} />
-		// 			<Route path='/researchWorkshopCall' component={CallForResearch} />
-		//
-		// 		</Switch>
-		// 	</div>
-		// </Router>
 	);
 }
 

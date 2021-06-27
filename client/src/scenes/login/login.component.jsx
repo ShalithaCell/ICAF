@@ -13,6 +13,8 @@ import {
 	Typography,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import Alert from '@material-ui/core/Alert';
+import Stack from '@material-ui/core/Stack';
 import { Copyright } from '../../components/organisms';
 import { communicationService } from '../../utils';
 import { loginAction } from '../../utils/store/user/user';
@@ -23,71 +25,16 @@ export default function Login()
 
 	const dispatch = useDispatch();
 
-	const [ formState, setFormState ] = useState({
-		username : "",
-		password : "",
-	});
-
 	const [ errorState, setErrorState ] = useState({
 		showUnauthorized : false,
 	});
 
 	useEffect(() =>
 	{
-		setFormState({
-			username : "",
-			password : "",
-		});
-
 		setErrorState({
 			showUnauthorized : false,
 		});
 	}, []);
-
-	// const handleChange = (e) =>
-	// {
-	// 	setFormState({ ...formState, [e.target.name]: e.target.value });
-	// };
-
-	// const handleSubmit = async (e) =>
-	// {
-	// 	e.preventDefault();
-	//
-	// 	try
-	// 	{
-	// 		const { username, password } = formState;
-	//
-	// 		switch (e.currentTarget.id)
-	// 		{
-	// 		case "login":
-	// 			console.log('controller login invoked');
-	// 			communicationService.login({ email: username, password },
-	// 				(res) =>
-	// 				{
-	// 					const { success } = res.data;
-	//
-	// 					if (success)
-	// 					{
-	// 						dispatch(loginAction(res.data));
-	//
-	// 						return;
-	// 					}
-	//
-	// 					setErrorState({ showUnauthorized: true });
-	// 				}, (err) =>
-	// 				{
-	// 					setErrorState({ showUnauthorized: true });
-	// 				});
-	// 			break;
-	// 		default:
-	// 			console.log('controller not found');
-	// 		}
-	// 	}
-	// 	catch (error)
-	// 	{
-	// 		console.error(error);
-	// 	}
-	// };
 
 	return (
 		<>
@@ -113,9 +60,29 @@ export default function Login()
 							email    : Yup.string().email('Must be a valid email').max(255).required('Email is required'),
 							password : Yup.string().max(255).required('Password is required'),
 						})}
-						onSubmit={() =>
+						onSubmit={(values, { setSubmitting }) =>
 						{
-							// navigate('/app/dashboard', { replace: true });
+							communicationService.login(values,
+								(res) =>
+								{
+									const { success } = res.data;
+
+									if (success)
+									{
+										dispatch(loginAction(res.data));
+
+										navigate('/app/dashboard', { replace: true });
+
+										return;
+									}
+
+									setErrorState({ showUnauthorized: true });
+									setSubmitting(true);
+								}, (err) =>
+								{
+									setErrorState({ showUnauthorized: true });
+									setSubmitting(false);
+								});
 						}}
 					>
 						{({
@@ -198,6 +165,12 @@ export default function Login()
 									value={values.password}
 									variant='outlined'
 								/>
+								<Stack sx={{ width: '100%' }} spacing={2}>
+									{
+										errorState.showUnauthorized ? <Alert severity='error'>Email or password is incorrect !</Alert>
+											: null
+									}
+								</Stack>
 								<Box sx={{ py: 2 }}>
 									<Button
 										color='primary'

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import SettingsView from "../scenes/dashboard/settings/settings.component";
 import DashboardLayout from "../components/organisms/dashboard/dashboardLayout";
 import MainLayout from "../components/molecules/mainLayout/mainLayout";
 import {
@@ -12,6 +11,7 @@ import {
 	ResearchPaperView,
 	ResearchWorkShop,
 	ResearchWorkShopView,
+	SettingsView,
 } from '../scenes';
 
 const routes = [
