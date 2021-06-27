@@ -13,7 +13,7 @@ import {
 	ResearchPaperView,
 	ResearchWorkShop,
 	ResearchWorkShopView,
-	contactUs
+	contactUs,
 } from '../scenes';
 
 const routes = [
@@ -41,7 +41,7 @@ const routes = [
 			{ path: '/research/publish', element: <ResearchPaperPublish /> },
 			{ path: '/research/view', element: <ResearchPaperView /> },
 			{ path: '/research/templates', element: <Login /> },
-			{ path: '/contactUs', element: <contactUs /> },
+			{ path: 'contactUs', element: <contactUs /> },
 			{ path: '404', element: <NotFound /> },
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
