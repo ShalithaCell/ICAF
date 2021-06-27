@@ -7,3 +7,4 @@ export { default as ResearchPaperView } from "./researchpapersview/researchPaper
 export { default as ResearchWorkShop } from "./workshop/researcWorkshop.component";
 export { default as ResearchWorkShopView } from "./workshopview/researcWorkshopView.component";
 export { default as CallForResearch } from "./callForResearch/callforresearch.component";
+export { default as SettingsView } from "./dashboard/settings/settings.component";
