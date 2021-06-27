@@ -1,5 +1,5 @@
 const generator = require('generate-password');
-const dataManagerService = require('../system/DataManager/dataManager.service');
+const dataManagerService = require('../system/dataManager/dataManager.service');
 const { Token } = require('../../models');
 
 const TokenService = {
