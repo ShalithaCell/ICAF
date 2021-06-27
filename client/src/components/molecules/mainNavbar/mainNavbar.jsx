@@ -5,6 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { NavDropdown } from "react-bootstrap";
 
 const MainNavbar = (props) =>
 {
@@ -30,13 +31,21 @@ const MainNavbar = (props) =>
 						News
 					</Typography>
 					<Button color='inherit' onClick={() => navigate('/login')}>Login</Button>
-					<Button color='inherit' onClick={() => navigate('/researchWorkshop/publish')}>Workshop</Button>
-					<Button color='inherit' onClick={() => navigate('/researchWorkshopView/view')}>View</Button>
-					<Button color='inherit' onClick={() => navigate('/researchWorkshopCall/view')}>Call For Workshop</Button>
-					<Button color='inherit' onClick={() => navigate('/research/publish')}>Publish</Button>
-					<Button color='inherit' onClick={() => navigate('/research/view')}>View</Button>
-					<Button color='inherit' onClick={() => navigate('/research/templates')}>Templates</Button>
-
+					<Button color='inherit'>
+						<NavDropdown title='ResearchPapers' id='basic-nav-dropdown'>
+							<NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>
+							<NavDropdown.Item href='/research/view'>View</NavDropdown.Item>
+							<NavDropdown.Item href='/research/templates'>Templates</NavDropdown.Item>
+						</NavDropdown>
+					</Button>
+					<Button>
+						<NavDropdown title='WorkShops' id='basic-nav-dropdown'>
+							<NavDropdown.Item href='/researchWorkshop/publish'>Workshop</NavDropdown.Item>
+							<NavDropdown.Item href='/researchWorkshopCall/view'>Call For Workshop</NavDropdown.Item>
+							<NavDropdown.Item href='/researchWorkshopView/view'>View</NavDropdown.Item>
+						</NavDropdown>
+					</Button>
+					<Button color='inherit' onClick={() => navigate('/contactUs')}>contact Us</Button>
 				</Toolbar>
 			</Toolbar>
 		</AppBar>

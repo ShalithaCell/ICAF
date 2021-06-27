@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import SettingsView from "../scenes/dashboard/settings/settings.component";
 import DashboardLayout from "../components/organisms/dashboard/dashboardLayout";
 import MainLayout from "../components/molecules/mainLayout/mainLayout";
+
 import {
 	Home,
 	Login,
@@ -12,6 +13,7 @@ import {
 	ResearchPaperView,
 	ResearchWorkShop,
 	ResearchWorkShopView,
+	contactUs
 } from '../scenes';
 
 const routes = [
@@ -39,6 +41,7 @@ const routes = [
 			{ path: '/research/publish', element: <ResearchPaperPublish /> },
 			{ path: '/research/view', element: <ResearchPaperView /> },
 			{ path: '/research/templates', element: <Login /> },
+			{ path: '/contactUs', element: <contactUs /> },
 			{ path: '404', element: <NotFound /> },
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
