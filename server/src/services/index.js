@@ -8,6 +8,7 @@ const TokenService = require('./user/token.service');
 const mailService = require('./system/mailer/nodeMailer.service');
 const emailNotificationService = require('./system/notification/emailNotification.service');
 const HomepageService = require('./homepage/homepage.service');
+const PaperSubmissionsService = require('./paperSubmissions/paperSubmissions.service');
 
 module.exports = {
     dbContext,
@@ -20,4 +21,5 @@ module.exports = {
     mailService,
     emailNotificationService,
     HomepageService,
+    PaperSubmissionsService,
 };
