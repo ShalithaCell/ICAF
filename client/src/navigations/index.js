@@ -42,7 +42,6 @@ const routes = [
 			{ path: '/research/publish', element: <ResearchPaperPublish /> },
 			{ path: '/research/view', element: <ResearchPaperView /> },
 			{ path: '/research/templates', element: <ResearchPaperTemplates /> },
-			{ path: '/research/templates', element: <Login /> },
 			{ path: '404', element: <NotFound /> },
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
