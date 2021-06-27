@@ -8,3 +8,4 @@ export { default as ResearchWorkShop } from "./workshop/researcWorkshop.componen
 export { default as ResearchWorkShopView } from "./workshopview/researcWorkshopView.component";
 export { default as CallForResearch } from "./callForResearch/callforresearch.component";
 export { default as SettingsView } from "./dashboard/settings/settings.component";
+export { default as ResearchPaperTamplets} from "./researchpapertamplets/researchPaperTamplets.component.jsx";

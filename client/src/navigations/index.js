@@ -10,6 +10,7 @@ import {
 	ResearchPaperPublish,
 	ResearchPaperView,
 	ResearchWorkShop,
+	ResearchPaperTamplets,
 	ResearchWorkShopView,
 	SettingsView,
 } from '../scenes';
@@ -38,6 +39,7 @@ const routes = [
 			{ path: '/researchWorkshopCall/view', element: <CallForResearch /> },
 			{ path: '/research/publish', element: <ResearchPaperPublish /> },
 			{ path: '/research/view', element: <ResearchPaperView /> },
+			{ path: '/research/templates', element: <ResearchPaperTamplets/> },
 			{ path: '/research/templates', element: <Login /> },
 			{ path: '404', element: <NotFound /> },
 			{ path: '/', element: <Home /> },
