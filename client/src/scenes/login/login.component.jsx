@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Alert from '@material-ui/core/Alert';
 import Stack from '@material-ui/core/Stack';
 import { Copyright } from '../../components/organisms';
-import { communicationService } from '../../utils';
+import { communicationService, SessionManagement } from '../../utils';
 import { loginAction } from '../../utils/store/user/user';
 
 export default function Login()
@@ -70,6 +70,16 @@ export default function Login()
 									if (success)
 									{
 										dispatch(loginAction(res.data));
+
+										const { data } = res.data;
+
+										const tokenObj = {
+											token        : data.token,
+											refreshToken : data.refreshToken.token,
+											user         : data.user,
+										};
+
+										SessionManagement.GetSetSession(tokenObj);
 
 										navigate('/app/dashboard', { replace: true });
 

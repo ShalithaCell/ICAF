@@ -10,3 +10,4 @@ export const IDENTIFICATION_STORAGE = '548415148453168625468465686';
 
 // API end-points
 export const LOGIN_ENDPOINT = `${BASE_URL}v1/auth`;
+export const REGISTRATION_ENDPOINT = `${BASE_URL}v1/registration`;
