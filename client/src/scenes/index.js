@@ -10,3 +10,4 @@ export { default as CallForResearch } from "./callForResearch/callforresearch.co
 export { default as SettingsView } from "./dashboard/settings/settings.component";
 export { default as ChangesList } from "./dashboard/changes/changes.component";
 export { default as CommonChangesView } from "./dashboard/commonChangesView/commonChangesView";
+export { default as ResearchPaperTamplets} from "./researchpapertamplets/researchPaperTamplets.component.jsx";
