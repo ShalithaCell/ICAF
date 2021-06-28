@@ -16,6 +16,7 @@ import {
 	ChangesList,
 	CommonChangesView,
 	ContactUs,
+	UserGuide,
 } from '../scenes';
 
 const routes = [
@@ -47,6 +48,7 @@ const routes = [
 			{ path: '404', element: <NotFound /> },
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
+			{ path: '/userGuide', element: <UserGuide /> },
 		],
 	},
 ];

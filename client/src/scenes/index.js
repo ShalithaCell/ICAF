@@ -12,4 +12,4 @@ export { default as ChangesList } from "./dashboard/changes/changes.component";
 export { default as CommonChangesView } from "./dashboard/commonChangesView/commonChangesView";
 export { default as ResearchPaperTemplates } from "./researchpapertamplets/researchPaperTamplets.component";
 export { default as ContactUs } from "./contactUs/contactUs.component";
-
+export { default as UserGuide } from "./userGuide/userGuide.component";

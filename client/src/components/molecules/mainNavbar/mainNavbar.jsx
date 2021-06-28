@@ -27,6 +27,9 @@ const MainNavbar = (props) =>
 						<a className='nav-link active' aria-current='page' href='/'>Home |</a>
 					</li>
 					<li className='nav-item'>
+						<a className='nav-link  text-dark' href='/userGuide'>User Guide |</a>
+					</li>
+					<li className='nav-item'>
 						<a className='nav-link  text-dark'>About Us |</a>
 					</li>
 					<li className='nav-item'>
