@@ -22,6 +22,7 @@ import {
 } from 'react-feather';
 import Paper from "@material-ui/core/Paper";
 import NavItem from '../../molecules/navItem/navItem';
+import { Group, Subject } from "@material-ui/icons";
 
 const user = {
 	avatar   : '/static/images/avatars/avatar_6.png',
@@ -64,6 +65,17 @@ const items = [
 		href  : '/register',
 		icon  : UserPlusIcon,
 		title : 'Register',
+	},
+
+	{
+		href  : '/researchWorkshop/publish',
+		icon  : Group,
+		title : 'Workshop Publish',
+	},
+	{
+		href  : '/research/publish',
+		icon  : Subject,
+		title : 'Research Paper Publish',
 	},
 	{
 		href  : '/404',
