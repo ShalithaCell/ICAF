@@ -8,16 +8,37 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/core/Alert';
 import { communicationService } from '../../../utils';
+
+// eslint-disable-next-line react/display-name
+const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />);
 
 const RegistrationEditPage = () =>
 {
 	const [ editData, setEditData ] = useState('');
+	const [ open, setOpen ] = React.useState(false);
 
 	useEffect(() =>
 	{
 		setEditData('');
 	}, []);
+
+	const handleClick = () =>
+	{
+		setOpen(true);
+	};
+
+	const handleClose = (event, reason) =>
+	{
+		if (reason === 'clickaway')
+		{
+			return;
+		}
+
+		setOpen(false);
+	};
 
 	const handleSubmit = (e) =>
 	{
@@ -27,6 +48,7 @@ const RegistrationEditPage = () =>
 			(res) =>
 			{
 				console.log(res);
+				setOpen(true);
 			},
 			(err) =>
 			{
@@ -83,6 +105,11 @@ const RegistrationEditPage = () =>
 				</CardActions>
 				<Divider />
 			</Card>
+			<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+				<Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
+					Data saved successfully.
+				</Alert>
+			</Snackbar>
 		</>
 	);
 };

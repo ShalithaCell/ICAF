@@ -13,6 +13,13 @@ const RegistrationService = {
 
         return data;
     },
+    findToBeApproved : async () =>
+    {
+        const data = await RegistrationViewSchema
+            .findOne({ isActive: true, isApproved: false });
+
+        return data;
+    },
     create : async (data) =>
     {
         const registrationView = new RegistrationViewSchema({
@@ -31,6 +38,29 @@ const RegistrationService = {
             created : true,
             data    : dataSaved,
         };
+    },
+    approve : async () =>
+    {
+        const approveData = await RegistrationService.findToBeApproved();
+
+        if (!approveData)
+        {
+            return null;
+        }
+
+        // remove old one
+        await RegistrationViewSchema.remove({ isActive: true, isApproved: true });
+
+        // set approved
+        const data = await RegistrationViewSchema
+            .updateOne({ isActive: true, isApproved: false }, {
+                isApproved : true,
+            }, (err, affected, resp) =>
+            {
+                console.log(resp);
+            });
+
+        return data;
     },
 };
 

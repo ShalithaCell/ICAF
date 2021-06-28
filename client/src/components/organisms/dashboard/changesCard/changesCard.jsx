@@ -93,7 +93,7 @@ const ChangesCard = ({ items, ...rest }) =>
 						<Button
 							variant='contained'
 							endIcon={<ArtTrackIcon />}
-							onClick={() => navigate('view')}
+							onClick={() => navigate('view', { state: { type: items.id } })}
 						>
 							View
 						</Button>

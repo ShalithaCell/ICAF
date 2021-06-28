@@ -45,6 +45,39 @@ router.get('/', async (ctx, next) =>
     next().then();
 });
 
+router.get('/edit', async (ctx, next) =>
+{
+    const response = new Response();
+
+    const result = await RegistrationService.findToBeApproved();
+
+    if (!result)
+    {
+        ctx.response.status = StatusCodes.FORBIDDEN;
+
+        response.success = false;
+        response.message = "Cannot get registration data";
+        response.data = {
+            message : '',
+        };
+
+        ctx.body = response;
+        next().then();
+
+        return;
+    }
+
+    response.success = true;
+    response.message = `Registration data retrieved successfully`;
+    response.data = {
+        registrationData : result,
+    };
+    ctx.response.status = StatusCodes.OK;
+    ctx.body = response;
+
+    next().then();
+});
+
 // create registration content method
 router.post('/', koaJwt, async (ctx, next) =>
 {
@@ -88,7 +121,24 @@ router.post('/', koaJwt, async (ctx, next) =>
     response.success = true;
     response.message = `Registration created successfully`;
     response.data = {
-        paperSubmissionData : result,
+        registrationData : result,
+    };
+    ctx.response.status = StatusCodes.OK;
+    ctx.body = response;
+
+    next().then();
+});
+
+router.put('/', koaJwt, async (ctx, next) =>
+{
+    const result = await RegistrationService.approve();
+
+    const response = new Response();
+
+    response.success = true;
+    response.message = `Registration approved successfully`;
+    response.data = {
+        registrationData : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
