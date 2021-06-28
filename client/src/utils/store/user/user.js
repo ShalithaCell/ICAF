@@ -15,12 +15,10 @@ const slice = createSlice({
 		loginSuccess : (state, action) =>
 		{
 			state.user = action.payload;
-			SessionManagement.GetSetSession({ user: action.payload });
 		},
 		logoutSuccess : (state, action) =>
 		{
 			state.user = null;
-			SessionManagement.GetSetSession({ user: null });
 		},
 	},
 });

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import {
-	Box,
-	Container,
-} from '@material-ui/core';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Divider from "@material-ui/core/Divider";
@@ -12,15 +8,83 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
+import { useLocation, useNavigate } from 'react-router-dom';
+import Alert from "@material-ui/core/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+import { communicationService } from '../../../utils';
 
 const CommonChangesView = () =>
 {
-	const [ editData, setEditData ] = useState('');
+	const { state } = useLocation();
+	const navigate = useNavigate();
 
-	useEffect(() =>
+	const { type } = state;
+
+	// debugger;
+	const [ editData, setEditData ] = useState({ data: '' });
+	const [ disabledButton, setDisabledButton ] = useState(true);
+	const [ open, setOpen ] = React.useState(false);
+	const [ getError, setError ] = React.useState(false);
+
+	const handleClose = (event, reason) =>
 	{
-		setEditData('');
+		if (reason === 'clickaway')
+		{
+			return;
+		}
+
+		setOpen(false);
+	};
+
+	useEffect(async () =>
+	{
+		setEditData({ data: '' });
+		setOpen(false);
+		setError(false);
+
+		switch (type)
+		{
+		case 'Registration':
+			await communicationService.registrationGetToBeApproved(null,
+				(res) =>
+				{
+					// debugger;
+					const { description } = res.data.data.registrationData;
+
+					setEditData({ data: description });
+					setDisabledButton(false);
+					setError(false);
+				},
+				(err) =>
+				{
+					// debugger;
+					setDisabledButton(true);
+					setError(true);
+				});
+			break;
+		default:
+			// debugger;
+			navigate('/app/changes');
+		}
 	}, []);
+
+	const onApproveHandle = (e) =>
+	{
+		e.preventDefault();
+
+		communicationService.registrationApprove(null,
+			(res) =>
+			{
+				// debugger;
+				setOpen(true);
+				navigate('/app/changes');
+			},
+			(err) =>
+			{
+				// debugger;
+				setOpen(false);
+			});
+	};
 
 	return (
 		<>
@@ -34,9 +98,10 @@ const CommonChangesView = () =>
 				/>
 				<Divider />
 				<CardContent>
+					<Alert severity='warning' hidden={!disabledButton}>No data to approve</Alert>
 					<CKEditor
 						editor={ClassicEditor}
-						data='<p>Hello from CKEditor 5!</p>'
+						data={editData.data}
 						onReady={(editor) =>
 						{
 							// You can store the "editor" and use when it is needed.
@@ -61,11 +126,22 @@ const CommonChangesView = () =>
 					/>
 				</CardContent>
 				<CardActions>
-					<Button variant='outlined' color='error'>Discard</Button>
-					<Button variant='outlined' color='success'>Accept</Button>
+					<Button variant='outlined' color='error' disabled={disabledButton}>Discard</Button>
+					<Button
+						variant='outlined' color='success' disabled={disabledButton}
+						onClick={(e) => onApproveHandle(e)}
+					>
+						Accept
+					</Button>
 				</CardActions>
 				<Divider />
 			</Card>
+			<Alert severity='error' hidden={!getError}>Something went wrong with data saving</Alert>
+			<Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+				<Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
+					Data approved successfully.
+				</Alert>
+			</Snackbar>
 		</>
 	);
 };

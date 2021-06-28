@@ -23,4 +23,11 @@ export default [
 		media       : 'location.png',
 		title       : 'Conference venue ',
 	},
+	{
+		id          : 'Registration',
+		description : 'Changes that made for Registration page.Admin can approve or discard',
+		media       : 'register.png',
+		title       : 'Registration',
+	},
+
 ];

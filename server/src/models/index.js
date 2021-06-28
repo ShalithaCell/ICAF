@@ -4,6 +4,7 @@ const RefreshToken = require('./user/refreshToken');
 const Token = require('./token/token');
 const HomepageConfig = require('./homepage/homepage');
 const PaperSubmissions = require('./paperSubmissions/paperSubmissions');
+const RegistrationViewSchema = require('./registrationView/registrationView');
 
 module.exports = {
     User,
@@ -12,4 +13,5 @@ module.exports = {
     Token,
     HomepageConfig,
     PaperSubmissions,
+    RegistrationViewSchema,
 };
