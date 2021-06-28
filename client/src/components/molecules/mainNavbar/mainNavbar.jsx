@@ -113,10 +113,10 @@ const MainNavbar = (props) =>
 										marginLeft : 300,
 									}}
 								>
-									 <input
+									<input
 										className='float-right p-2 bg-light border' type='search'
-										   placeholder='Search' aria-label='Search'
-									 />
+										placeholder='Search' aria-label='Search'
+									/>
 									<button className='btn btn btn-dark mb-2' type='submit'>Search</button>
 
 								</form>
