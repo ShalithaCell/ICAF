@@ -14,3 +14,4 @@ export { default as ResearchPaperTemplates } from "./researchpapertamplets/resea
 export { default as ContactUs } from "./contactUs/contactUs.component";
 export { default as UserGuide } from "./userGuide/userGuide.component";
 export { default as RegistrationEditPage } from "./dashboard/registration/registration.component";
+export { default as RegistrationViewPage } from "./registrationview/registrationView.component";

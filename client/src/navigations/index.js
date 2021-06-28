@@ -18,6 +18,7 @@ import {
 	ContactUs,
 	UserGuide,
 	RegistrationEditPage,
+	RegistrationViewPage,
 } from '../scenes';
 
 const routes = [
@@ -50,6 +51,7 @@ const routes = [
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
 			{ path: '/userGuide', element: <UserGuide /> },
+			{ path: '/registration', element: <RegistrationViewPage /> },
 		],
 	},
 ];
