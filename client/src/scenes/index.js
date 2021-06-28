@@ -12,3 +12,4 @@ export { default as ChangesList } from "./dashboard/changes/changes.component";
 export { default as CommonChangesView } from "./dashboard/commonChangesView/commonChangesView";
 export { default as ResearchPaperTemplates } from "./researchpapertamplets/researchPaperTamplets.component";
 export { default as RegistrationEditPage } from "./dashboard/registration/registration.component";
+export { default as WorkshopTemplates } from "./workshoptemplates/workshopTamplets.component";

@@ -86,15 +86,19 @@ const MainNavbar = (props) =>
 								<a className='nav-link text-dark' href='/login'>Login |</a>
 							</li>
 
-							<li className='nav-item'>
-								<a className='nav-link text-dark'>Download Materials |</a>
-							</li>
 
-							<NavDropdown title='Research Workshop' id='navbarScrollingDropdown'>
+							<NavDropdown title='Download Materials' id='navbarScrollingDropdown'>
+								<NavDropdown.Item href='/workshop/templates'> workshop PowerPoint Templates </NavDropdown.Item>
+								<NavDropdown.Item href='/research/templates'>Research Papers Templates</NavDropdown.Item>
+
+
+							</NavDropdown>
+
+							<NavDropdown title='Workshop' id='navbarScrollingDropdown'>
 								<NavDropdown.Item href='/researchWorkshop/publish'>Workshop </NavDropdown.Item>
 								<NavDropdown.Item href='/researchWorkshopView/view'>View</NavDropdown.Item>
 								<NavDropdown.Divider />
-								<NavDropdown.Item href='/researchWorkshopCall'>Call For Workshop</NavDropdown.Item>
+								<NavDropdown.Item href='/workshop/templates'>Templates</NavDropdown.Item>
 							</NavDropdown>
 
 							<NavDropdown title='Research Papers' id='navbarScrollingDropdown'>
@@ -111,11 +115,11 @@ const MainNavbar = (props) =>
 									}}
 								>
 
-									<input
-										className='float-right p-2 bg-light border' type='search'
-										placeholder='Search' aria-label='Search'
-									/>
-									<button className='btn btn btn-dark mb-2' type='submit'>Search</button>
+									{/*<input*/}
+									{/*	className='float-right p-2 bg-light border' type='search'*/}
+									{/*	placeholder='Search' aria-label='Search'*/}
+									{/*/>*/}
+									{/*<button className='btn btn btn-dark mb-2' type='submit'>Search</button>*/}
 								</form>
 							</li>
 						</ul>

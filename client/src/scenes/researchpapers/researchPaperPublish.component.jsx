@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { Form,FormGroup,Dropdown,} from "react-bootstrap";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CardContent from "@material-ui/core/CardContent";
+
+
+
+
+
 
 
 export default function ResearchPaperPublish()
 {
+
+	const [ editData, setEditData ] = useState('');
+	const [ open, setOpen ] = React.useState(false);
+	useEffect(() =>
+	{
+		setEditData('');
+	}, []);
+
+	const handleClick = () =>
+	{
+		setOpen(true);
+	};
+
 	return (
 		<div className='container'>
 			<h2>Publish Research paper</h2>
@@ -50,11 +71,33 @@ export default function ResearchPaperPublish()
 
 				<div className='mb-3'>
 					<label htmlFor='description' className='form-label'>Description</label>
-					<textarea
-						className='form-control'
-						id='description'
-						rows='3'
-					/>
+					<CardContent >
+						<CKEditor
+							editor={ClassicEditor}
+							data=''
+							onReady={(editor) =>
+							{
+								// You can store the "editor" and use when it is needed.
+								console.log('Editor is ready to use!', editor);
+							}}
+							onChange={(event, editor) =>
+							{
+								const data = editor.getData();
+
+								console.log({ event, editor, data });
+
+								setEditData(data);
+							}}
+							onBlur={(event, editor) =>
+							{
+								console.log('Blur.', editor);
+							}}
+							onFocus={(event, editor) =>
+							{
+								console.log('Focus.', editor);
+							}}
+						/>
+					</CardContent>
 					<br/>
 
 					<div className='mb-3'>
@@ -85,6 +128,8 @@ export default function ResearchPaperPublish()
 <br/>
 				<button type='submit' className='btn btn-primary'>Submit</button>
 			</form>
+
+
 		</div>
 	);
 }

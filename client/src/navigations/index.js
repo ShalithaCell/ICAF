@@ -11,6 +11,7 @@ import {
 	ResearchPaperView,
 	ResearchWorkShop,
 	ResearchPaperTemplates,
+	WorkshopTemplates,
 	ResearchWorkShopView,
 	SettingsView,
 	ChangesList,
@@ -43,6 +44,8 @@ const routes = [
 			{ path: '/research/publish', element: <ResearchPaperPublish /> },
 			{ path: '/research/view', element: <ResearchPaperView /> },
 			{ path: '/research/templates', element: <ResearchPaperTemplates /> },
+			{ path: '/workshop/templates', element: <WorkshopTemplates /> },
+
 			{ path: '404', element: <NotFound /> },
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
