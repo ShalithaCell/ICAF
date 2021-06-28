@@ -77,7 +77,12 @@ const MainNavbar = (props) =>
 							<li className='nav-item'>
 								<a className='nav-link  text-dark'>About Us |</a>
 							</li>
-
+							<li className='nav-item'>
+								<a className='nav-link  text-dark' href='/contactUs'>Contact Us |</a>
+							</li>
+							<li className='nav-item'>
+								<a className='nav-link  text-dark' href='/userGuide'>User Guide |</a>
+							</li>
 							<li className='nav-item'>
 								<a className='nav-link active' aria-current='page' href='/'>News |</a>
 							</li>
@@ -110,6 +115,11 @@ const MainNavbar = (props) =>
 										marginLeft : 300,
 									}}
 								>
+									 <input
+										className='float-right p-2 bg-light border' type='search'
+										   placeholder='Search' aria-label='Search'
+									 />
+									<button className='btn btn btn-dark mb-2' type='submit'>Search</button>
 
 									<input
 										className='float-right p-2 bg-light border' type='search'

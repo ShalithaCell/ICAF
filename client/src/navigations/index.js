@@ -15,6 +15,8 @@ import {
 	SettingsView,
 	ChangesList,
 	CommonChangesView,
+	ContactUs,
+	UserGuide,
 	RegistrationEditPage,
 } from '../scenes';
 
@@ -43,9 +45,11 @@ const routes = [
 			{ path: '/research/publish', element: <ResearchPaperPublish /> },
 			{ path: '/research/view', element: <ResearchPaperView /> },
 			{ path: '/research/templates', element: <ResearchPaperTemplates /> },
+			{ path: '/contactUs', element: <ContactUs /> },
 			{ path: '404', element: <NotFound /> },
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
+			{ path: '/userGuide', element: <UserGuide /> },
 		],
 	},
 ];
