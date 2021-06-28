@@ -20,8 +20,7 @@ const CommonChangesView = () =>
 
 	const { type } = state;
 
-	// debugger;
-	const [ editData, setEditData ] = useState({ data: '' });
+	const [ editData, setEditData ] = useState('');
 	const [ disabledButton, setDisabledButton ] = useState(true);
 	const [ open, setOpen ] = React.useState(false);
 	const [ getError, setError ] = React.useState(false);
@@ -38,7 +37,7 @@ const CommonChangesView = () =>
 
 	useEffect(async () =>
 	{
-		setEditData({ data: '' });
+		setEditData('');
 		setOpen(false);
 		setError(false);
 
@@ -48,18 +47,15 @@ const CommonChangesView = () =>
 			await communicationService.registrationGetToBeApproved(null,
 				(res) =>
 				{
-					// debugger;
 					const { description } = res.data.data.registrationData;
 
-					setEditData({ data: description });
+					setEditData(description);
 					setDisabledButton(false);
 					setError(false);
 				},
 				(err) =>
 				{
-					// debugger;
 					setDisabledButton(true);
-					setError(true);
 				});
 			break;
 		default:
@@ -72,7 +68,7 @@ const CommonChangesView = () =>
 	{
 		e.preventDefault();
 
-		communicationService.registrationApprove(null,
+		communicationService.registrationApprove({ description: editData },
 			(res) =>
 			{
 				// debugger;
@@ -101,7 +97,7 @@ const CommonChangesView = () =>
 					<Alert severity='warning' hidden={!disabledButton}>No data to approve</Alert>
 					<CKEditor
 						editor={ClassicEditor}
-						data={editData.data}
+						data={editData}
 						onReady={(editor) =>
 						{
 							// You can store the "editor" and use when it is needed.

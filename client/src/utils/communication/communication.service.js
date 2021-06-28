@@ -74,9 +74,13 @@ axios.interceptors.response.use(
 
 						return axios(originalRequest);
 					}
+
 					console.log("api call 401");
 
 					return null;
+				}).catch(() =>
+				{
+					window.location.replace('/login');
 				});
 		}
 
@@ -90,6 +94,10 @@ const communicationService = {
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 
 	registrationCreate	: (body, onSuccess, onError) => axios.post(REGISTRATION_ENDPOINT, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	registrationGet	: (body, onSuccess, onError) => axios
+		.get(REGISTRATION_ENDPOINT)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 	registrationGetToBeApproved	: (body, onSuccess, onError) => axios

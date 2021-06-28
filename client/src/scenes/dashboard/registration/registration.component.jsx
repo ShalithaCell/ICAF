@@ -23,6 +23,17 @@ const RegistrationEditPage = () =>
 	useEffect(() =>
 	{
 		setEditData('');
+
+		communicationService.registrationGet(null,
+			(res) =>
+			{
+				const { description } = res.data.data.registrationData;
+
+				setEditData(description);
+			}, (err) =>
+			{
+				console.log(err);
+			});
 	}, []);
 
 	const handleClick = () =>
@@ -70,7 +81,7 @@ const RegistrationEditPage = () =>
 				<CardContent>
 					<CKEditor
 						editor={ClassicEditor}
-						data=''
+						data={editData}
 						onReady={(editor) =>
 						{
 							// You can store the "editor" and use when it is needed.
@@ -80,7 +91,7 @@ const RegistrationEditPage = () =>
 						{
 							const data = editor.getData();
 
-							console.log({ event, editor, data });
+							// console.log({ event, editor, data });
 
 							setEditData(data);
 						}}
