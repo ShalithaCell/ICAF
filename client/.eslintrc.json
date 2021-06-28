@@ -38,6 +38,7 @@
         "generator-star-spacing": 2,
         "guard-for-in": 2,
         "indent": [ "error", "tab"],
+        "no-param-reassign" : 0,
         "key-spacing": [ 2,
             {
                 "singleLine":
@@ -79,7 +80,7 @@
         "no-catch-shadow": 2,
         "no-class-assign": 2,
         "no-confusing-arrow": 2,
-        "no-console": 2,
+        "no-console": 1,
         "no-const-assign": 2,
         "no-debugger": 2,
         "no-dupe-args": 2,
@@ -107,7 +108,7 @@
         "no-irregular-whitespace": 2,
         "no-lonely-if": 2,
         "no-mixed-operators": 2,
-        "no-mixed-spaces-and-tabs": 2,
+        "no-mixed-spaces-and-tabs": 0,
         "no-multi-spaces": 2,
         "no-multi-str": 2,
         "no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
@@ -214,6 +215,8 @@
                 "assignment": false,
                 "return": true
             }],
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "no-underscore-dangle" : 0,
+        "no-nested-ternary" : 0
     }
 }

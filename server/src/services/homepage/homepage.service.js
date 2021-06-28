@@ -13,7 +13,6 @@ const HomepageService = {
     {
         const data = await HomepageConfig.find({ _id: ObjectId(id) }).catch((err) =>
         {
-            // TODO: log error
             console.log(err);
 
             return null;

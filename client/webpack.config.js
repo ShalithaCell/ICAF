@@ -21,6 +21,7 @@ module.exports = (env) =>
 		devServer : {
 			contentBase        : "./build",
 			historyApiFallback : true,
+			port               : 8008,
 		},
 		module : {
 			rules : [
@@ -60,6 +61,14 @@ module.exports = (env) =>
 							options : {
 								limit : 10000,
 							},
+						},
+					],
+				},
+				{
+					test : /\.(png|jpe?g|gif)$/i,
+					use  : [
+						{
+							loader : 'file-loader',
 						},
 					],
 				},
