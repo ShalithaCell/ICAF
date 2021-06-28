@@ -68,6 +68,7 @@ export default function ResearchPaperTemplates()
 						</NavDropdown.Item>
 						<NavDropdown.Item href="http://www.ijsrp.org/IJSRP-paper-submission-format-double-column.docx">Student Career Research Paper
 
+
 							<img
 								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnyvMu-d96GKT3U0xT_18hT4IJ6nH0oaZCBagsb_5h7ZKwVDg70-yy_Q_Zydy7NUleME&usqp=CAU"
 								width="30" height="30" className="d-inline-block align-top" alt=""/>
