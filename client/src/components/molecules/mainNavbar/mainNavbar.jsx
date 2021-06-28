@@ -33,6 +33,7 @@ const MainNavbar = (props) =>
 			{/* <Button color='inherit' onClick={() => navigate('/login')}>Login</Button>*/}
 			{/* <Button color='inherit' onClick={() => navigate('/researchWorkshop/publish')}>Workshop</Button>*/}
 			{/* <Button color='inherit' onClick={() => navigate('/researchWorkshopView/view')}>View</Button>*/}
+			{/* eslint-disable-next-line max-len */}
 			{/* <Button color='inherit' onClick={() => navigate('/researchWorkshopCall/view')}>Call For Workshop</Button>*/}
 			{/* <Button color='inherit' onClick={() => navigate('/research/publish')}>Publish</Button>*/}
 			{/* <Button color='inherit' onClick={() => navigate('/research/view')}>View</Button>*/}
@@ -107,6 +108,7 @@ const MainNavbar = (props) =>
 								<NavDropdown.Divider />
 								<NavDropdown.Item href='/research/templates'>Templates</NavDropdown.Item>
 							</NavDropdown>
+
 							<li className='nav-item'>
 								<form
 									style={{
@@ -119,6 +121,11 @@ const MainNavbar = (props) =>
 									 />
 									<button className='btn btn btn-dark mb-2' type='submit'>Search</button>
 
+									<input
+										className='float-right p-2 bg-light border' type='search'
+										placeholder='Search' aria-label='Search'
+									/>
+									<button className='btn btn btn-dark mb-2' type='submit'>Search</button>
 								</form>
 							</li>
 						</ul>

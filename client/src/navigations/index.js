@@ -17,6 +17,7 @@ import {
 	CommonChangesView,
 	ContactUs,
 	UserGuide,
+	RegistrationEditPage,
 } from '../scenes';
 
 const routes = [
@@ -25,7 +26,7 @@ const routes = [
 		element  : <DashboardLayout />,
 		children : [
 			{ path: 'changes', element: <ChangesList /> },
-			{ path: 'customers', element: <SettingsView /> },
+			{ path: 'registration', element: <RegistrationEditPage /> },
 			{ path: 'dashboard', element: <SettingsView /> },
 			{ path: 'changes/view', element: <CommonChangesView /> },
 			{ path: 'settings', element: <SettingsView /> },
