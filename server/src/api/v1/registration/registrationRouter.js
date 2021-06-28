@@ -131,9 +131,27 @@ router.post('/', koaJwt, async (ctx, next) =>
 
 router.put('/', koaJwt, async (ctx, next) =>
 {
-    const result = await RegistrationService.approve();
+    const { description } = ctx.request.body;
 
     const response = new Response();
+
+    if (!description)
+    {
+        ctx.response.status = StatusCodes.BAD_REQUEST;
+
+        response.success = false;
+        response.message = "required field(s) missing";
+        response.data = {
+            message : "required field(s) missing",
+        };
+
+        ctx.body = response;
+        next().then();
+
+        return;
+    }
+
+    const result = await RegistrationService.approve(description);
 
     response.success = true;
     response.message = `Registration approved successfully`;

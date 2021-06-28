@@ -39,7 +39,7 @@ const RegistrationService = {
             data    : dataSaved,
         };
     },
-    approve : async () =>
+    approve : async (description) =>
     {
         const approveData = await RegistrationService.findToBeApproved();
 
@@ -55,6 +55,7 @@ const RegistrationService = {
         const data = await RegistrationViewSchema
             .updateOne({ isActive: true, isApproved: false }, {
                 isApproved : true,
+                description,
             }, (err, affected, resp) =>
             {
                 console.log(resp);
