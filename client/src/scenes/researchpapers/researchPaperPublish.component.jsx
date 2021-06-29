@@ -5,6 +5,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import CardContent from "@material-ui/core/CardContent";
 
+
 export default function ResearchPaperPublish()
 {
 	const [ editData, setEditData ] = useState('');
@@ -108,7 +109,6 @@ export default function ResearchPaperPublish()
 						id='subjectName'
 						name='subjectName'
 					/>
-
 				</div>
 				<br />
 				<button type='submit' className='btn btn-primary'>Submit</button>
