@@ -90,7 +90,7 @@ const MainNavbar = (props) =>
 							<li className='nav-item'>
 								<a className='nav-link text-white' href='/login'>Login |</a>
 							</li>
-
+							<NavDropdown title='Download Materials' id='navbarScrollingDropdown'>
 
 
 
@@ -103,7 +103,6 @@ const MainNavbar = (props) =>
 								<NavDropdown.Item href='/workshop/templates'> workshop PowerPoint Templates </NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item href='/research/templates'>Research Papers Templates</NavDropdown.Item>
-
 
 							</NavDropdown>
 

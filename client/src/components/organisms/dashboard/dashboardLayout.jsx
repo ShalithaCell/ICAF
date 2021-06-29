@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { experimentalStyled } from '@material-ui/core';
 import DashboardNavbar from './dashboardNavbar';
 import DashboardSidebar from './dashboardSidebar';
+import checkAuthorization from "../../../utils/Authorization/UserAuthorization";
 
 const DashboardLayoutRoot = experimentalStyled('div')(
 	({ theme }) => ({
@@ -41,6 +42,11 @@ const DashboardLayoutContent = experimentalStyled('div')({
 const DashboardLayout = () =>
 {
 	const [ isMobileNavOpen, setMobileNavOpen ] = useState(false);
+
+	if (!checkAuthorization('reviewer'))
+	{
+		return <Navigate to='/403' />;
+	}
 
 	return (
 		<DashboardLayoutRoot>

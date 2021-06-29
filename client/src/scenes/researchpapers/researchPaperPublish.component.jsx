@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { Form,FormGroup,Dropdown,} from "react-bootstrap";
+import { Form, FormGroup, Dropdown } from "react-bootstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import CardContent from "@material-ui/core/CardContent";
 
-
-
-
-
-
-
 export default function ResearchPaperPublish()
 {
-
 	const [ editData, setEditData ] = useState('');
 	const [ open, setOpen ] = React.useState(false);
+
 	useEffect(() =>
 	{
 		setEditData('');
@@ -35,15 +29,15 @@ export default function ResearchPaperPublish()
 				<div className='mb-3'>
 
 					<label htmlFor='subjectName' className='form-label'>Category</label>
-					<br/>
-					<select className='form-control' >
-						<option value="volvo">Architecture</option>
-						<option value="saab">Software Engineering</option>
-						<option value="opel">Data Science</option>
-						<option value="audi">Science and Technology</option>
-						<option value="audi">Maths</option>
-						<option value="audi">Engineering</option>
-						<option value="audi">Other</option>
+					<br />
+					<select className='form-control'>
+						<option value='volvo'>Architecture</option>
+						<option value='saab'>Software Engineering</option>
+						<option value='opel'>Data Science</option>
+						<option value='audi'>Science and Technology</option>
+						<option value='audi'>Maths</option>
+						<option value='audi'>Engineering</option>
+						<option value='audi'>Other</option>
 					</select>
 
 				</div>
@@ -71,7 +65,7 @@ export default function ResearchPaperPublish()
 
 				<div className='mb-3'>
 					<label htmlFor='description' className='form-label'>Description</label>
-					<CardContent >
+					<CardContent>
 						<CKEditor
 							editor={ClassicEditor}
 							data=''
@@ -98,7 +92,7 @@ export default function ResearchPaperPublish()
 							}}
 						/>
 					</CardContent>
-					<br/>
+					<br />
 
 					<div className='mb-3'>
 						<label htmlFor='subjectName' className='form-label'>Research Paper</label>
@@ -106,18 +100,18 @@ export default function ResearchPaperPublish()
 
 					<Form.File
 						className='form-control'
-						id="datetime"
-						data-browse="Bestand kiezen"
+						id='datetime'
+						data-browse='Bestand kiezen'
 						custom
 					/>
 
 				</div>
 				<div className='mb-3'>
 					<label htmlFor='subjectAmount' className='form-label'>Publish Date</label>
-					<br/>
+					<br />
 
 					<input
-						type="datetime-local"
+						type='datetime-local'
 						className='form-control'
 						id='subjectName'
 						name='subjectName'
@@ -125,10 +119,9 @@ export default function ResearchPaperPublish()
 
 				</div>
 
-<br/>
+				<br />
 				<button type='submit' className='btn btn-primary'>Submit</button>
 			</form>
-
 
 		</div>
 	);
