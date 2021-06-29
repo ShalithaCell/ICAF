@@ -39,7 +39,6 @@ export default function ResearchPaperPublish()
 					</select>
 				</div>
 				<div className='mb-3'>
-
 					<label htmlFor='subjectName' className='form-label'>Title</label>
 					<input
 						type='text'
@@ -48,7 +47,6 @@ export default function ResearchPaperPublish()
 						name='subjectName'
 					/>
 				</div>
-
 				<div className='mb-3'>
 					<label htmlFor='subjectName' className='form-label'>Publisher Name</label>
 					<input
@@ -75,7 +73,6 @@ export default function ResearchPaperPublish()
 								const data = editor.getData();
 
 								console.log({ event, editor, data });
-
 								setEditData(data);
 							}}
 							onBlur={(event, editor) =>
@@ -89,7 +86,6 @@ export default function ResearchPaperPublish()
 						/>
 					</CardContent>
 					<br />
-
 					<div className='mb-3'>
 						<label htmlFor='subjectName' className='form-label'>Research Paper</label>
 					</div>
