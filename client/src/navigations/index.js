@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import DashboardLayout from "../components/organisms/dashboard/dashboardLayout";
 import MainLayout from "../components/molecules/mainLayout/mainLayout";
 import {
+	AccessDenied,
 	Home,
 	Login,
 	NotFound,
@@ -50,10 +51,11 @@ const routes = [
 			{ path: '/workshop/templates', element: <WorkshopTemplates /> },
 			{ path: '/contactUs', element: <ContactUs /> },
 			{ path: '404', element: <NotFound /> },
-			{ path: '/', element: <Home /> },
-			{ path: '*', element: <Navigate to='/404' /> },
+			{ path: '403', element: <AccessDenied /> },
 			{ path: '/userGuide', element: <UserGuide /> },
 			{ path: '/registration', element: <RegistrationViewPage /> },
+			{ path: '/', element: <Home /> },
+			{ path: '*', element: <Navigate to='/404' /> },
 		],
 	},
 ];

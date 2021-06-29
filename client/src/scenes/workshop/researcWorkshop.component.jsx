@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { Form,FormGroup,Dropdown,} from "react-bootstrap";
+import { Form, FormGroup, Dropdown } from "react-bootstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import CardContent from "@material-ui/core/CardContent";
 
 export default function ResearchWorkShop()
 {
-
 	const [ editData, setEditData ] = useState('');
 	const [ open, setOpen ] = React.useState(false);
+
 	useEffect(() =>
 	{
 		setEditData('');
@@ -19,12 +19,12 @@ export default function ResearchWorkShop()
 	{
 		setOpen(true);
 	};
+
 	return (
 		<div className='container'>
 			<h2>Publish Workshops</h2>
 			<br />
 			<form>
-
 
 				<div className='mb-3'>
 
@@ -37,10 +37,9 @@ export default function ResearchWorkShop()
 					/>
 				</div>
 
-
 				<div className='mb-3'>
 					<label htmlFor='description' className='form-label'>Description</label>
-					<CardContent >
+					<CardContent>
 						<CKEditor
 							editor={ClassicEditor}
 							data=''
@@ -67,20 +66,17 @@ export default function ResearchWorkShop()
 							}}
 						/>
 					</CardContent>
-					<br/>
-
+					<br />
 
 					<div className='mb-3'>
 						<label htmlFor='subjectName' className='form-label'>Publisher Image</label>
 						<Form.File
 							className='form-control'
-							id="datetime"
-							data-browse="Bestand kiezen"
+							id='datetime'
+							data-browse='Bestand kiezen'
 							custom
 						/>
 					</div>
-
-
 
 					<div className='mb-3'>
 						<label htmlFor='subjectName' className='form-label'>Publisher Name</label>
@@ -102,15 +98,13 @@ export default function ResearchWorkShop()
 						/>
 					</div>
 
-
-
 				</div>
 				<div className='mb-3'>
 					<label htmlFor='subjectAmount' className='form-label'>Publish Date</label>
-					<br/>
+					<br />
 
 					<input
-						type="datetime-local"
+						type='datetime-local'
 						className='form-control'
 						id='subjectName'
 						name='subjectName'
@@ -118,7 +112,7 @@ export default function ResearchWorkShop()
 
 				</div>
 
-				<br/>
+				<br />
 				<button type='submit' className='btn btn-primary'>Submit</button>
 			</form>
 		</div>

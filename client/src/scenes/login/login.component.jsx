@@ -53,8 +53,8 @@ export default function Login()
 				<Container maxWidth='sm'>
 					<Formik
 						initialValues={{
-							email    : 'demo@devias.io',
-							password : 'Password123',
+							email    : '',
+							password : '',
 						}}
 						validationSchema={Yup.object().shape({
 							email    : Yup.string().email('Must be a valid email').max(255).required('Email is required'),
@@ -81,7 +81,15 @@ export default function Login()
 
 										SessionManagement.GetSetSession(tokenObj);
 
-										navigate('/app/dashboard', { replace: true });
+										// Redirect role user to home page and others to dashboard
+										if (data.user.role.priority === 4)
+										{
+											navigate('/', { replace: true });
+										}
+										else
+										{
+											navigate('/app/dashboard', { replace: true });
+										}
 
 										return;
 									}
