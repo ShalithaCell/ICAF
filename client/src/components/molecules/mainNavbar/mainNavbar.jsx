@@ -1,3 +1,5 @@
+// eslint-disable-next-line max-len
+/* eslint-disable jsx-a11y/anchor-is-valid,jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar } from '@material-ui/core';
@@ -24,7 +26,7 @@ const MainNavbar = (props) =>
 						width='35' height='35' className='d-inline-block align-top' alt=''
 					/>
 
-					<a className='navbar-brand text-info' href='#'>ICAF</a>
+					<a className='navbar-brand text-info' style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>ICAF</a>
 
 					<button
 						className='navbar-toggler' type='button' data-bs-toggle='collapse'
@@ -36,23 +38,23 @@ const MainNavbar = (props) =>
 					<div className='collapse navbar-collapse' id='navbarNav'>
 						<ul className='navbar-nav'>
 							<li className='nav-item'>
-								<a className='nav-link active text-white' aria-current='page' href='/'>Home |</a>
+								<a className='nav-link active text-white' aria-current='page' style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>Home |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link  text-white'>About Us |</a>
+								<a className='nav-link  text-white' style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>About Us |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link  text-white' href='/contactUs'>Contact Us |</a>
+								<a className='nav-link  text-white cus-pointer' style={{ cursor: 'pointer' }} onClick={() => navigate('/contactUs')}>Contact Us |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link  text-white' href='/userGuide'>User Guide |</a>
+								<a className='nav-link  text-white' style={{ cursor: 'pointer' }} onClick={() => navigate('/userGuide')}>User Guide |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link active text-white' aria-current='page' href='/registration'>Registration |</a>
+								<a className='nav-link active text-white' aria-current='page' style={{ cursor: 'pointer' }} onClick={() => navigate('/registration')}>Registration |</a>
 							</li>
 
 							<li className='nav-item'>
-								<a className='nav-link text-white' href='/login'>Login |</a>
+								<a className='nav-link text-white' style={{ cursor: 'pointer' }} onClick={() => navigate('/login')}>Login |</a>
 							</li>
 
 							<NavDropdown
@@ -60,9 +62,9 @@ const MainNavbar = (props) =>
 									<span className='text-white my-auto'>Download Materials</span>
 								}
 							>
-								<NavDropdown.Item href='/workshop/templates'> workshop PowerPoint Templates </NavDropdown.Item>
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/workshop/templates')}> workshop PowerPoint Templates </NavDropdown.Item>
 								<NavDropdown.Divider />
-								<NavDropdown.Item href='/research/templates'>Research Papers Templates</NavDropdown.Item>
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/templates')}>Research Papers Templates</NavDropdown.Item>
 
 							</NavDropdown>
 
@@ -73,9 +75,9 @@ const MainNavbar = (props) =>
 								id='navbarScrollingDropdown'
 							>
 								{/* <NavDropdown.Item href='/researchWorkshop/publish'>Workshop </NavDropdown.Item>*/}
-								<NavDropdown.Item href='/researchWorkshopView/view'>View</NavDropdown.Item>
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/researchWorkshopView/view')}>View</NavDropdown.Item>
 								<NavDropdown.Divider />
-								<NavDropdown.Item href='/workshop/templates'>Templates</NavDropdown.Item>
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/workshop/templates')}>Templates</NavDropdown.Item>
 							</NavDropdown>
 
 							<NavDropdown
@@ -85,9 +87,9 @@ const MainNavbar = (props) =>
 								id='navbarScrollingDropdown'
 							>
 								{/* <NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>*/}
-								<NavDropdown.Item href='/research/view'>View</NavDropdown.Item>
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/view')}>View</NavDropdown.Item>
 								<NavDropdown.Divider />
-								<NavDropdown.Item href='/research/templates'>Templates</NavDropdown.Item>
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/templates')}>Templates</NavDropdown.Item>
 							</NavDropdown>
 
 							<li className='nav-item'>

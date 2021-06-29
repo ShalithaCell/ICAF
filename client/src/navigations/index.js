@@ -21,6 +21,7 @@ import {
 	UserGuide,
 	RegistrationEditPage,
 	RegistrationViewPage,
+	SignupForm,
 } from '../scenes';
 
 const routes = [
@@ -54,6 +55,7 @@ const routes = [
 			{ path: '403', element: <AccessDenied /> },
 			{ path: '/userGuide', element: <UserGuide /> },
 			{ path: '/registration', element: <RegistrationViewPage /> },
+			{ path: '/signup', element: <SignupForm /> },
 			{ path: '/', element: <Home /> },
 			{ path: '*', element: <Navigate to='/404' /> },
 		],
