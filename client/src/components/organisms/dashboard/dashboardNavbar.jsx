@@ -25,10 +25,16 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) =>
 		>
 			<Toolbar>
 				<RouterLink to='/'>
+					{/*<img*/}
+					{/*	alt='Logo'*/}
+					{/*	src={Logo}*/}
+					{/*/>*/}
+
 					<img
-						alt='Logo'
-						src={Logo}
+						src='https://i.pinimg.com/originals/31/8d/a3/318da3082926e54402950eaf0d7f68ba.png'
+						width='35' height='35' className='d-inline-block align-top' alt=''
 					/>
+					<a className='navbar-brand text-info' href='#'>ICAF</a>
 				</RouterLink>
 				<Box sx={{ flexGrow: 1 }} />
 				<Paper sx={{ display: { xs: 'none', md: 'block' } }}>

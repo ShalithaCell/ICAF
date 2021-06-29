@@ -53,11 +53,11 @@ const MainNavbar = (props) =>
 			{/*	<NavDropdown.Item href="/research/templates">Templates</NavDropdown.Item>*/}
 			{/* </NavDropdown>*/}
 
-			<nav className='navbar navbar-expand-lg navbar-light bg-secondary'>
+			<nav className='navbar navbar-expand-lg navbar-light bg-primary'>
 				<div className='container-fluid'>
 					<img
 						src='https://i.pinimg.com/originals/31/8d/a3/318da3082926e54402950eaf0d7f68ba.png'
-						width='30' height='30' className='d-inline-block align-top' alt=''
+						width='35' height='35' className='d-inline-block align-top' alt=''
 					/>
 
 					<a className='navbar-brand text-info' href='#'>ICAF</a>
@@ -72,40 +72,57 @@ const MainNavbar = (props) =>
 					<div className='collapse navbar-collapse' id='navbarNav'>
 						<ul className='navbar-nav'>
 							<li className='nav-item'>
-								<a className='nav-link active' aria-current='page' href='/'>Home |</a>
+								<a className='nav-link active text-white' aria-current='page' href='/'>Home |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link  text-dark'>About Us |</a>
+								<a className='nav-link  text-white'>About Us |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link  text-dark' href='/contactUs'>Contact Us |</a>
+								<a className='nav-link  text-white' href='/contactUs'>Contact Us |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link  text-dark' href='/userGuide'>User Guide |</a>
+								<a className='nav-link  text-white' href='/userGuide'>User Guide |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link active' aria-current='page' href='/registration'>Registration |</a>
+								<a className='nav-link active text-white'  aria-current='page' href='/registration'>Registration |</a>
 							</li>
 
 							<li className='nav-item'>
-								<a className='nav-link text-dark' href='/login'>Login |</a>
+								<a className='nav-link text-white' href='/login'>Login |</a>
 							</li>
-
 							<NavDropdown title='Download Materials' id='navbarScrollingDropdown'>
+
+
+
+
+							<NavDropdown
+								title={
+									<span className="text-white my-auto">Download Materials</span>
+								}
+							>
 								<NavDropdown.Item href='/workshop/templates'> workshop PowerPoint Templates </NavDropdown.Item>
+								<NavDropdown.Divider />
 								<NavDropdown.Item href='/research/templates'>Research Papers Templates</NavDropdown.Item>
 
 							</NavDropdown>
 
-							<NavDropdown title='Workshop' id='navbarScrollingDropdown'>
-								<NavDropdown.Item href='/researchWorkshop/publish'>Workshop </NavDropdown.Item>
+							<NavDropdown
+								title={
+									<span className="text-white my-auto">Workshop</span>
+								}
+								id='navbarScrollingDropdown'>
+								{/*<NavDropdown.Item href='/researchWorkshop/publish'>Workshop </NavDropdown.Item>*/}
 								<NavDropdown.Item href='/researchWorkshopView/view'>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item href='/workshop/templates'>Templates</NavDropdown.Item>
 							</NavDropdown>
 
-							<NavDropdown title='Research Papers' id='navbarScrollingDropdown'>
-								<NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>
+							<NavDropdown
+								title={
+									<span className="text-white my-auto">Research Papers</span>
+								}
+								id='navbarScrollingDropdown'>
+								{/*<NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>*/}
 								<NavDropdown.Item href='/research/view'>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item href='/research/templates'>Templates</NavDropdown.Item>
@@ -117,11 +134,11 @@ const MainNavbar = (props) =>
 										marginLeft : 300,
 									}}
 								>
-									<input
-										className='float-right p-2 bg-light border' type='search'
-										placeholder='Search' aria-label='Search'
-									/>
-									<button className='btn btn btn-dark mb-2' type='submit'>Search</button>
+									{/*<input*/}
+									{/*	className='float-right p-2 bg-light border' type='search'*/}
+									{/*	placeholder='Search' aria-label='Search'*/}
+									{/*/>*/}
+									{/*<button className='btn btn btn-dark mb-2' type='submit'>Search</button>*/}
 
 								</form>
 							</li>
@@ -138,5 +155,4 @@ const MainNavbar = (props) =>
 		</AppBar>
 	);
 };
-
 export default MainNavbar;
