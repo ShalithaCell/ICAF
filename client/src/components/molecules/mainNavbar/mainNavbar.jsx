@@ -91,11 +91,9 @@ const MainNavbar = (props) =>
 								<a className='nav-link text-dark' href='/login'>Login |</a>
 							</li>
 
-
 							<NavDropdown title='Download Materials' id='navbarScrollingDropdown'>
 								<NavDropdown.Item href='/workshop/templates'> workshop PowerPoint Templates </NavDropdown.Item>
 								<NavDropdown.Item href='/research/templates'>Research Papers Templates</NavDropdown.Item>
-
 
 							</NavDropdown>
 
