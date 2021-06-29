@@ -113,7 +113,6 @@ export default function ResearchPaperPublish()
 				<br />
 				<button type='submit' className='btn btn-primary'>Submit</button>
 			</form>
-
 		</div>
 	);
 }
