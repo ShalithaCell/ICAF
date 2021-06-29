@@ -16,42 +16,6 @@ const MainNavbar = (props) =>
 			elevation={0}
 			{...props}
 		>
-			{/* <Toolbar sx={{ height: 64 }}>*/}
-			{/*	<Toolbar>*/}
-			{/*		<IconButton*/}
-			{/*			size='large'*/}
-			{/*			edge='start'*/}
-			{/*			color='inherit'*/}
-			{/*			aria-label='menu'*/}
-			{/*			sx={{ mr: 2 }}*/}
-			{/*		>*/}
-			{/*			<MenuIcon />*/}
-			{/*		</IconButton>*/}
-			{/*		<Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>*/}
-			{/*			News*/}
-			{/*		</Typography>*/}
-			{/* <Button color='inherit' onClick={() => navigate('/login')}>Login</Button>*/}
-			{/* <Button color='inherit' onClick={() => navigate('/researchWorkshop/publish')}>Workshop</Button>*/}
-			{/* <Button color='inherit' onClick={() => navigate('/researchWorkshopView/view')}>View</Button>*/}
-			{/* eslint-disable-next-line max-len */}
-			{/* <Button color='inherit' onClick={() => navigate('/researchWorkshopCall/view')}>Call For Workshop</Button>*/}
-			{/* <Button color='inherit' onClick={() => navigate('/research/publish')}>Publish</Button>*/}
-			{/* <Button color='inherit' onClick={() => navigate('/research/view')}>View</Button>*/}
-			{/* <Button color='inherit' onClick={() => navigate('/research/templates')}>Templates</Button>*/}
-
-			{/* <NavDropdown  title="Research Workshop" id="navbarScrollingDropdown" className="text-white">*/}
-			{/*	<NavDropdown.Item href="/researchWorkshop/publish">Workshop </NavDropdown.Item>*/}
-			{/*	<NavDropdown.Item href="/researchWorkshopView/view">View</NavDropdown.Item>*/}
-			{/*	<NavDropdown.Divider />*/}
-			{/*	<NavDropdown.Item href="/researchWorkshopCall">Call For Workshop</NavDropdown.Item>*/}
-			{/* </NavDropdown>*/}
-
-			{/* <NavDropdown  title="Research Papers" id="navbarScrollingDropdown">*/}
-			{/*	<NavDropdown.Item href="/research/publish">Publish</NavDropdown.Item>*/}
-			{/*	<NavDropdown.Item href="/research/view">View</NavDropdown.Item>*/}
-			{/*	<NavDropdown.Divider />*/}
-			{/*	<NavDropdown.Item href="/research/templates">Templates</NavDropdown.Item>*/}
-			{/* </NavDropdown>*/}
 
 			<nav className='navbar navbar-expand-lg navbar-light bg-primary'>
 				<div className='container-fluid'>
@@ -84,20 +48,16 @@ const MainNavbar = (props) =>
 								<a className='nav-link  text-white' href='/userGuide'>User Guide |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link active text-white'  aria-current='page' href='/registration'>Registration |</a>
+								<a className='nav-link active text-white' aria-current='page' href='/registration'>Registration |</a>
 							</li>
 
 							<li className='nav-item'>
 								<a className='nav-link text-white' href='/login'>Login |</a>
 							</li>
-							<NavDropdown title='Download Materials' id='navbarScrollingDropdown'>
-
-
-
 
 							<NavDropdown
 								title={
-									<span className="text-white my-auto">Download Materials</span>
+									<span className='text-white my-auto'>Download Materials</span>
 								}
 							>
 								<NavDropdown.Item href='/workshop/templates'> workshop PowerPoint Templates </NavDropdown.Item>
@@ -108,10 +68,11 @@ const MainNavbar = (props) =>
 
 							<NavDropdown
 								title={
-									<span className="text-white my-auto">Workshop</span>
+									<span className='text-white my-auto'>Workshop</span>
 								}
-								id='navbarScrollingDropdown'>
-								{/*<NavDropdown.Item href='/researchWorkshop/publish'>Workshop </NavDropdown.Item>*/}
+								id='navbarScrollingDropdown'
+							>
+								{/* <NavDropdown.Item href='/researchWorkshop/publish'>Workshop </NavDropdown.Item>*/}
 								<NavDropdown.Item href='/researchWorkshopView/view'>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item href='/workshop/templates'>Templates</NavDropdown.Item>
@@ -119,10 +80,11 @@ const MainNavbar = (props) =>
 
 							<NavDropdown
 								title={
-									<span className="text-white my-auto">Research Papers</span>
+									<span className='text-white my-auto'>Research Papers</span>
 								}
-								id='navbarScrollingDropdown'>
-								{/*<NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>*/}
+								id='navbarScrollingDropdown'
+							>
+								{/* <NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>*/}
 								<NavDropdown.Item href='/research/view'>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item href='/research/templates'>Templates</NavDropdown.Item>
@@ -134,11 +96,11 @@ const MainNavbar = (props) =>
 										marginLeft : 300,
 									}}
 								>
-									{/*<input*/}
+									{/* <input*/}
 									{/*	className='float-right p-2 bg-light border' type='search'*/}
 									{/*	placeholder='Search' aria-label='Search'*/}
-									{/*/>*/}
-									{/*<button className='btn btn btn-dark mb-2' type='submit'>Search</button>*/}
+									{/* />*/}
+									{/* <button className='btn btn btn-dark mb-2' type='submit'>Search</button>*/}
 
 								</form>
 							</li>
@@ -155,4 +117,5 @@ const MainNavbar = (props) =>
 		</AppBar>
 	);
 };
+
 export default MainNavbar;
