@@ -25,9 +25,7 @@ export default function ResearchPaperPublish()
 			<h2>Publish Research paper</h2>
 			<br />
 			<form>
-
 				<div className='mb-3'>
-
 					<label htmlFor='subjectName' className='form-label'>Category</label>
 					<br />
 					<select className='form-control'>
@@ -41,7 +39,6 @@ export default function ResearchPaperPublish()
 					</select>
 
 				</div>
-
 				<div className='mb-3'>
 
 					<label htmlFor='subjectName' className='form-label'>Title</label>
