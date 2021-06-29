@@ -37,7 +37,6 @@ export default function ResearchPaperPublish()
 						<option value='audi'>Engineering</option>
 						<option value='audi'>Other</option>
 					</select>
-
 				</div>
 				<div className='mb-3'>
 
