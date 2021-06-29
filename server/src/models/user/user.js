@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     password       : String,
     phone          : String,
     emailConfirmed : Boolean,
+    fileName       : String,
     role           : {
         type : Schema.Types.ObjectId,
         ref  : 'role',

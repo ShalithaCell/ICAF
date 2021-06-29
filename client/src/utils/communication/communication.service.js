@@ -4,6 +4,7 @@ import {
 	LOGIN_ENDPOINT,
 	REGISTRATION_ENDPOINT,
 	REGISTRATION_TO_APPROVE_ENDPOINT,
+	USER_REGISTRATION_ENDPOINT,
 } from "../../config";
 import SessionManagement from "../session/SessionManagement";
 
@@ -105,6 +106,13 @@ const communicationService = {
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 	registrationApprove	: (body, onSuccess, onError) => axios.put(REGISTRATION_ENDPOINT, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+
+	registerUser : (body, onSuccess, onError) => axios.post(USER_REGISTRATION_ENDPOINT, body, {
+		headers : {
+			'Content-Type' : 'multipart/form-data',
+		} })
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 };

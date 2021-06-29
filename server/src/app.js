@@ -13,7 +13,12 @@ dbContext();
 const app = new Koa();
 
 app
-    .use(koaBody())
+    .use(koaBody({ formidable : {
+        uploadDir      : `${__dirname}/../public`, // directory where files will be uploaded
+        keepExtensions : true, // keep file extension on upload
+    },
+    multipart  : true,
+    urlencoded : true }))
     .use(exceptionService.errorHandler) // register generic error handler middleware
     .use(exceptionService.jsonErrorHandler) // register json error handler middleware
     .use(cors()) // allowed CORS
