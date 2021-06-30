@@ -281,7 +281,10 @@ router.put('/update', async (ctx, next) =>
 
 router.put('/', koaJwt, async (ctx, next) =>
 {
+    console.log("in api");
     const request = Object.setPrototypeOf(ctx.request.body, HomepageConfig.prototype);
+
+    console.log(request);
 
     const response = new Response();
 

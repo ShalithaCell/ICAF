@@ -81,7 +81,10 @@ router.get('/edit', async (ctx, next) =>
 // create registration content method
 router.post('/', koaJwt, async (ctx, next) =>
 {
+    console.log("in api");
     const { description } = ctx.request.body;
+
+    console.log(description);
 
     const response = new Response();
 
