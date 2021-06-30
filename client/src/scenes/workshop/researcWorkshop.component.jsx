@@ -22,6 +22,46 @@ export default function ResearchWorkShop()
 						name='subjectName'
 					/>
 				</div>
+				<div className='mb-3'>
+
+					<label htmlFor='subjectName' className='form-label'>Workshop Title</label>
+					<input
+						type='text'
+						className='form-control'
+						id='subjectName'
+						name='subjectName'
+					/>
+				</div>
+				<div className='mb-3'>
+
+					<label htmlFor='subjectName' className='form-label'>Workshop Title</label>
+					<input
+						type='text'
+						className='form-control'
+						id='subjectName'
+						name='subjectName'
+					/>
+				</div>
+				<div className='mb-3'>
+
+					<label htmlFor='subjectName' className='form-label'>Workshop Title</label>
+					<input
+						type='text'
+						className='form-control'
+						id='subjectName'
+						name='subjectName'
+					/>
+				</div>
+				<div className='mb-3'>
+
+					<label htmlFor='subjectName' className='form-label'>Workshop Title</label>
+					<input
+						type='text'
+						className='form-control'
+						id='subjectName'
+						name='subjectName'
+					/>
+				</div>
 
 
 				<div className='mb-3'>
