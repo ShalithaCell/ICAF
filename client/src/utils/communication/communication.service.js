@@ -7,6 +7,7 @@ import {
 	REGISTRATION_TO_APPROVE_ENDPOINT,
 	USER_REGISTRATION_ENDPOINT,
 	RESEARCH_ENDPOINT,
+	WORKSHOPCALL_ENDPOINT,
 } from "../../config";
 import SessionManagement from "../session/SessionManagement";
 
@@ -100,6 +101,10 @@ const communicationService = {
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 	registrationGet	: (body, onSuccess, onError) => axios
 		.get(REGISTRATION_ENDPOINT)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	workshopCallGet	: (body, onSuccess, onError) => axios
+		.get(WORKSHOPCALL_ENDPOINT)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 	registrationGetToBeApproved	: (body, onSuccess, onError) => axios

@@ -6,6 +6,7 @@ export { default as AccessDenied } from "./accessDenied/accessDenied.component";
 export { default as ResearchPaperPublish } from "./researchpapers/researchPaperPublish.component";
 export { default as ResearchPaperView } from "./researchpapersview/researchPaperView.component";
 export { default as ResearchWorkShop } from "./workshop/researcWorkshop.component";
+export { default as CallForWorkshops } from "./callForWorkshops/callForWorkshops.component";
 export { default as ResearchWorkShopView } from "./workshopview/researcWorkshopView.component";
 export { default as CallForResearch } from "./callForResearch/callforresearch.component";
 export { default as SettingsView } from "./dashboard/settings/settings.component";

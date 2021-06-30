@@ -78,6 +78,8 @@ const MainNavbar = (props) =>
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/researchWorkshopView/view')}>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/workshop/templates')}>Templates</NavDropdown.Item>
+								<NavDropdown.Divider />
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/callForWorkshops/view')}>Call for workshops</NavDropdown.Item>
 							</NavDropdown>
 
 							<NavDropdown
