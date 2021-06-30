@@ -20,6 +20,7 @@ import {
 	Users as UsersIcon,
 } from 'react-feather';
 import Paper from "@material-ui/core/Paper";
+import RateReviewIcon from '@material-ui/icons/RateReview';
 import { Group, Subject } from "@material-ui/icons";
 import NavItem from '../../molecules/navItem/navItem';
 
@@ -56,9 +57,9 @@ const items = [
 		title : 'Settings',
 	},
 	{
-		href  : '/login',
-		icon  : LockIcon,
-		title : 'Login',
+		href  : '/app/review',
+		icon  : RateReviewIcon,
+		title : 'Review',
 	},
 	{
 		href  : '/app/users',

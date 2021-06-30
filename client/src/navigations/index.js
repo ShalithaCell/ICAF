@@ -23,6 +23,8 @@ import {
 	RegistrationViewPage,
 	UsersPage,
 	SignupForm,
+	ReviewPage,
+	ResearchPaperViewPage,
 } from '../scenes';
 
 const routes = [
@@ -36,6 +38,8 @@ const routes = [
 			{ path: 'dashboard', element: <SettingsView /> },
 			{ path: 'changes/view', element: <CommonChangesView /> },
 			{ path: 'settings', element: <SettingsView /> },
+			{ path: 'review', element: <ReviewPage /> },
+			{ path: 'review/research', element: <ResearchPaperViewPage /> },
 			{ path: '*', element: <Navigate to='/404' /> },
 		],
 	},

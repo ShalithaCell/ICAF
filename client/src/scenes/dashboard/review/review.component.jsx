@@ -6,13 +6,13 @@ import {
 	Grid,
 } from '@material-ui/core';
 import { Navigate } from "react-router-dom";
-import changesList from '../../../assets/data/changesItems';
-import { ChangesCard } from '../../../components/organisms';
-import { checkAuthorization } from "../../../utils";
+import changesList from '../../../assets/data/reviewList';
+import { ReviewCard } from '../../../components/organisms';
+import checkAuthorization from "../../../utils/Authorization/UserAuthorization";
 
-const ChangesList = () =>
+const ReviewPage = () =>
 {
-	if (!checkAuthorization('editor'))
+	if (!checkAuthorization('reviewer'))
 	{
 		return <Navigate to='/403' />;
 	}
@@ -20,7 +20,7 @@ const ChangesList = () =>
 	return (
 		<>
 			<Helmet>
-				<title>Changes | ICAF</title>
+				<title>Reviews | ICAF</title>
 			</Helmet>
 			<Box
 				sx={{
@@ -43,7 +43,7 @@ const ChangesList = () =>
 									md={6}
 									xs={12}
 								>
-									<ChangesCard items={item} />
+									<ReviewCard items={item} />
 								</Grid>
 							))}
 						</Grid>
@@ -61,4 +61,4 @@ const ChangesList = () =>
 	);
 };
 
-export default ChangesList;
+export default ReviewPage;
