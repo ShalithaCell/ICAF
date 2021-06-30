@@ -338,6 +338,7 @@ const ResearchPaperPublish = (props) =>
 							color='primary'
 							variant='contained'
 							onClick={(e) => onSubmit(e)}
+							onClick={() => alert("Successfully Send Data!")}
 						>
 							Submit
 						</Button>
