@@ -77,35 +77,10 @@ const SignupForm = (props) =>
 		message : '',
 	});
 
-	const { acceptedFiles, getRootProps, getInputProps,
-		isDragActive,
-		isDragAccept,
-		isDragReject } = useDropzone({
-		accept   : 'application/pdf',
-		maxFiles : 1,
+	const [ successData, setSuccessData ] = useState({
+		display : false,
+		message : '',
 	});
-
-	const style = useMemo(() => ({
-		...baseStyle,
-		...(isDragActive ? activeStyle : {}),
-		...(isDragAccept ? acceptStyle : {}),
-		...(isDragReject ? rejectStyle : {}),
-	}), [
-		isDragActive,
-		isDragReject,
-		isDragAccept,
-	]);
-
-	const files = acceptedFiles.map((file) => (
-		<li key={file.path}>
-			{file.path}
-			{' '}
-			-
-			{file.size}
-			{' '}
-			bytes
-		</li>
-	));
 
 	useEffect(() =>
 	{
@@ -119,6 +94,11 @@ const SignupForm = (props) =>
 		});
 
 		setAlertData({
+			display : false,
+			message : '',
+		});
+
+		setSuccessData({
 			display : false,
 			message : '',
 		});
@@ -197,18 +177,29 @@ const SignupForm = (props) =>
 		formData.append("email", values.email);
 		formData.append("password", values.password);
 		formData.append("phone", values.phone);
-		acceptedFiles.forEach((file) =>
-		{
-			formData.append("resourceFile", file);
-		});
+		formData.append("type", values.type);
+		// acceptedFiles.forEach((file) =>
+		// {
+		// 	formData.append("resourceFile", file);
+		// });
 
 		communicationService.registerUser(formData, (res) =>
 		{
-			debugger;
+			setSuccessData({
+				display : true,
+				message : res.data.message,
+			});
+
+			setAlertData({ display: false, message: '' });
 		},
 		(err) =>
 		{
-			debugger;
+			setSuccessData({
+				display : false,
+				message : '',
+			});
+
+			setAlertData({ display: true, message: 'Something went wrong with data saving. Please try again' });
 		});
 	};
 
@@ -345,32 +336,7 @@ presenter, or attendee'
 						<Alert severity='error' hidden={!alertData.display}>{alertData.message}</Alert>
 					</CardContent>
 					<Divider />
-					<Box sx={{ py: 2 }} hidden={values.type === 'Attendee'}>
-						<Card>
-							<CardHeader
-								subheader={
-									values.type === 'Researcher' ? 'The research paper should be uploaded alongside '
-									+ 'the contact information (pdf files only)'
-										: values.type === 'WorkshopPresenter' ? 'The Proposal containing all the necessary '
-									+ 'details about the workshop should be uploaded alongside the contact information (pdf files only)'
-											: ''
-								}
-							/>
-							<Divider />
-							<CardContent>
-								<section className='container'>
-									<div {...getRootProps({ style })}>
-										<input {...getInputProps()} />
-										<p>Drag &rsquo;n&rsquo; drop some files here, or click to select files</p>
-									</div>
-									<aside>
-										<h6>Files</h6>
-										<ul>{files}</ul>
-									</aside>
-								</section>
-							</CardContent>
-						</Card>
-					</Box>
+					<Alert severity='success' hidden={!successData.display}>{successData.message}</Alert>
 					<Divider />
 					<Box
 						sx={{

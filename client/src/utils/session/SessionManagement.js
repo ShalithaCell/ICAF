@@ -3,17 +3,17 @@ import { IDENTIFICATION_STORAGE } from "../../config";
 const SessionManagement = {
 	SetSession : (obj) =>
 	{
-		localStorage.setItem(IDENTIFICATION_STORAGE, JSON.stringify(obj));
+		sessionStorage.setItem(IDENTIFICATION_STORAGE, JSON.stringify(obj));
 	},
 	GetSession : () =>
 	{
-		if (localStorage.getItem(IDENTIFICATION_STORAGE) === null)
+		if (sessionStorage.getItem(IDENTIFICATION_STORAGE) === null)
 		{
 			return null;
 		}
 		else
 		{
-			return localStorage.getItem(IDENTIFICATION_STORAGE);
+			return sessionStorage.getItem(IDENTIFICATION_STORAGE);
 		}
 	},
 	GetSetSession : (obj) =>
@@ -36,7 +36,7 @@ const SessionManagement = {
 	},
 	DestroySession : () =>
 	{
-		localStorage.removeItem(IDENTIFICATION_STORAGE);
+		sessionStorage.removeItem(IDENTIFICATION_STORAGE);
 	},
 };
 

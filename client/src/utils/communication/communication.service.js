@@ -1,10 +1,12 @@
 import axios from "axios";
 import {
-	BASE_URL, CREATE_USERS_ENDPOINT,
+	BASE_URL,
+	CREATE_USERS_ENDPOINT,
 	LOGIN_ENDPOINT,
 	REGISTRATION_ENDPOINT,
 	REGISTRATION_TO_APPROVE_ENDPOINT,
 	USER_REGISTRATION_ENDPOINT,
+	RESEARCH_ENDPOINT,
 } from "../../config";
 import SessionManagement from "../session/SessionManagement";
 
@@ -127,6 +129,15 @@ const communicationService = {
 		headers : {
 			'Content-Type' : 'multipart/form-data',
 		} })
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+
+	researchUpload : (body, onSuccess, onError) => axios.post(
+		RESEARCH_ENDPOINT, body, {
+			headers : {
+				'Content-Type' : 'multipart/form-data',
+			} },
+	)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 };

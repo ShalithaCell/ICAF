@@ -87,6 +87,8 @@ const MainNavbar = (props) =>
 								id='navbarScrollingDropdown'
 							>
 								{/* <NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>*/}
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/publish')}>Publish</NavDropdown.Item>
+								<NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/view')}>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/templates')}>Templates</NavDropdown.Item>

@@ -8,6 +8,7 @@ const RegistrationViewSchema = require('./registrationView/registrationView');
 const ConferenceTracksSchema = require('./conferenceTracks/conferenceTracks');
 const WorkshopsConfig = require('./workshops/workshops');
 const WorkshopCallsConfig = require('./workshops/workshopCalls');
+const ResearchMaterialSchema = require('./materials/researchMaterials');
 
 module.exports = {
     User,
@@ -20,4 +21,5 @@ module.exports = {
     ConferenceTracksSchema,
     WorkshopsConfig,
     WorkshopCallsConfig,
+    ResearchMaterialSchema,
 };

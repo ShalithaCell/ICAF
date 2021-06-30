@@ -81,7 +81,7 @@ const RegistrationEditPage = () =>
 				<CardContent>
 					<CKEditor
 						editor={ClassicEditor}
-						data={editData}
+						data={editData ?? ''}
 						onReady={(editor) =>
 						{
 							// You can store the "editor" and use when it is needed.
