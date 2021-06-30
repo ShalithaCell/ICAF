@@ -3,6 +3,25 @@ const { PaperSubmissions } = require("../../models");
 const PaperSubmissionsType = require('../../types/paperSubmissions/paperSubmission');
 
 const PaperSubmissionsService = {
+    find : async () =>
+    {
+        const data = await PaperSubmissions
+            .findOne({ isActive: true, isApproved: true });
+
+        if (!data)
+        {
+            return '';
+        }
+
+        return data;
+    },
+    findToBeApproved : async () =>
+    {
+        const data = await PaperSubmissions
+            .findOne({ isActive: true, isApproved: false });
+
+        return data;
+    },
     findAll : async () =>
     {
         const data = await PaperSubmissions.find({});
@@ -38,7 +57,11 @@ const PaperSubmissionsService = {
                 description   : request.description,
                 publisherDate : request.publisherDate,
                 file          : request.file,
+                isActive      : true,
+                isApproved    : false,
             });
+
+            await PaperSubmissions.remove({ isActive: true, isApproved: false });
 
             // create user
             const data = await homepage.save();
@@ -91,6 +114,35 @@ const PaperSubmissionsService = {
             console.log(e);
             throw e;
         }
+    },
+    approve : async (paperData) =>
+    {
+        const approveData = await PaperSubmissionsService.findToBeApproved();
+
+        if (!approveData)
+        {
+            return null;
+        }
+
+        // remove old one
+        await PaperSubmissions.remove({ isActive: true, isApproved: true });
+
+        // set approved
+        const data = await PaperSubmissions
+            .updateOne({ isActive: true, isApproved: false }, {
+                isApproved    : true,
+                title         : paperData.title,
+                category      : paperData.category,
+                publisherName : paperData.publisherName,
+                description   : paperData.description,
+                publisherDate : paperData.publisherDate,
+                file          : paperData.file,
+            }, (err, affected, resp) =>
+            {
+                console.log(resp);
+            });
+
+        return data;
     },
 };
 
