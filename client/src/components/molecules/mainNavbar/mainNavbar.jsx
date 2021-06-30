@@ -51,19 +51,5 @@ const MainNavbar = (props) =>
 		</AppBar>
 	);
 };
-// <Button color='inherit'>
-// 						<NavDropdown title='ResearchPapers' id='basic-nav-dropdown'>
-// 							<NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>
-// 							<NavDropdown.Item href='/research/view'>View</NavDropdown.Item>
-// 							<NavDropdown.Item href='/research/templates'>Templates</NavDropdown.Item>
-// 						</NavDropdown>
-// 					</Button>
-// 					<Button>
-// 						<NavDropdown title='WorkShops' id='basic-nav-dropdown'>
-// 							<NavDropdown.Item href='/researchWorkshop/publish'>Workshop</NavDropdown.Item>
-// 							<NavDropdown.Item href='/researchWorkshopCall/view'>Call For Workshop</NavDropdown.Item>
-// 							<NavDropdown.Item href='/researchWorkshopView/view'>View</NavDropdown.Item>
-// 						</NavDropdown>
-// 					</Button>
 
 export default MainNavbar;
