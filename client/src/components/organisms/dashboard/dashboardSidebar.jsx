@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
 	Avatar,
 	Box,
-	Button,
 	Divider,
 	Drawer,
 	List,
@@ -21,8 +20,8 @@ import {
 	Users as UsersIcon,
 } from 'react-feather';
 import Paper from "@material-ui/core/Paper";
-import NavItem from '../../molecules/navItem/navItem';
 import { Group, Subject } from "@material-ui/icons";
+import NavItem from '../../molecules/navItem/navItem';
 
 const user = {
 	avatar   : '/static/images/avatars/avatar_6.png',
@@ -62,11 +61,10 @@ const items = [
 		title : 'Login',
 	},
 	{
-		href  : '/register',
+		href  : '/app/users',
 		icon  : UserPlusIcon,
 		title : 'Register',
 	},
-
 	{
 		href  : '/researchWorkshop/publish',
 		icon  : Group,
