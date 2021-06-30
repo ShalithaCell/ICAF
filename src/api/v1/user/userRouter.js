@@ -2,6 +2,9 @@ const Router = require('koa-router');
 const StatusCodes = require('http-status-codes');
 const validator = require("email-validator");
 const owasp = require('owasp-password-strength-test');
+const multer = require('koa-multer');
+const path = require('path');
+const fs = require('fs');
 const { NewUser, Response } = require("../../../types");
 const { userService, emailNotificationService, TokenService, dataManagerService } = require('../../../services');
 const { version } = require('../../../config');
@@ -70,7 +73,25 @@ const createUser = async (ctx, request) =>
 
     request.password = hashPassword;
 
-    const result = await userService.create(request);
+    // file get
+
+    let fileName = '';
+
+    try
+    {
+        if (ctx.request.files.resourceFile.path)
+        {
+            fileName = ctx.request.files.resourceFile.path.replace(/^.*[\\/]/, '');
+        }
+    }
+    catch (e)
+    {
+        console.log('no attachments');
+    }
+
+    const newReq = Object.assign(request, { fileName });
+
+    const result = await userService.create(newReq);
 
     if (!result)
     {

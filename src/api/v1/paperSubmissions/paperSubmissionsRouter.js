@@ -1,21 +1,20 @@
 const Router = require('koa-router');
 const StatusCodes = require('http-status-codes');
-const { Response, HomepageConfig } = require("../../../types");
-const { HomepageService } = require('../../../services');
+const { Response, PaperSubmissions } = require("../../../types");
+const { PaperSubmissionsService } = require('../../../services');
 const { version } = require('../../../config');
-const { koaJwt } = require('../../../middlewares');
 
 // Prefix all routes with: /user
 const router = new Router({
-    prefix : `${version.v1}/homepage`,
+    prefix : `${version.v1}/paperSubmissions`,
 });
 
 // Routes will go here
 
-// user sign in method
+// create paper submission method
 router.post('/', async (ctx, next) =>
 {
-    const request = Object.setPrototypeOf(ctx.request.body, HomepageConfig.prototype);
+    const request = Object.setPrototypeOf(ctx.request.body, PaperSubmissions.prototype);
 
     const response = new Response();
 
@@ -40,9 +39,9 @@ router.post('/', async (ctx, next) =>
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
         response.success = false;
-        response.message = "Conference title is missing";
+        response.message = "Paper title is missing";
         response.data = {
-            message : "Conference title is missing",
+            message : "Paper title is missing",
         };
 
         ctx.body = response;
@@ -50,14 +49,14 @@ router.post('/', async (ctx, next) =>
 
         return;
     }
-    if (!request.subTitle)
+    if (!request.category)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
         response.success = false;
-        response.message = "Conference subtitle is missing";
+        response.message = "Paper category is missing";
         response.data = {
-            message : "Conference subtitle is missing",
+            message : "Paper category is missing",
         };
 
         ctx.body = response;
@@ -65,14 +64,14 @@ router.post('/', async (ctx, next) =>
 
         return;
     }
-    if (!request.aboutConference)
+    if (!request.description)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
         response.success = false;
-        response.message = "Conference details are missing";
+        response.message = "Paper description are missing";
         response.data = {
-            message : "Conference details are missing",
+            message : "Paper description are missing",
         };
 
         ctx.body = response;
@@ -81,14 +80,14 @@ router.post('/', async (ctx, next) =>
         return;
     }
 
-    const result = await HomepageService.create(request);
+    const result = await PaperSubmissionsService.create(request);
 
     if (!result)
     {
         ctx.response.status = StatusCodes.FORBIDDEN;
 
         response.success = false;
-        response.message = "Cannot create homepage";
+        response.message = "Cannot create paper";
         response.data = {
             message : result,
         };
@@ -99,9 +98,9 @@ router.post('/', async (ctx, next) =>
         return;
     }
     response.success = true;
-    response.message = `Homepage created successfully`;
+    response.message = `Paper created successfully`;
     response.data = {
-        homepageData : result,
+        paperSubmissionData : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
@@ -113,7 +112,7 @@ router.get('/', async (ctx, next) =>
 {
     const response = new Response();
 
-    const result = await HomepageService.find();
+    const result = await PaperSubmissionsService.findAll();
 
     if (!result)
     {
@@ -132,9 +131,9 @@ router.get('/', async (ctx, next) =>
     }
 
     response.success = true;
-    response.message = `Homepage data retrived successfully`;
+    response.message = `Paper data retrived successfully`;
     response.data = {
-        homepageData : result,
+        PaperData : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
@@ -166,7 +165,7 @@ router.get('/getById/:id', async (ctx, next) =>
         return;
     }
 
-    const result = await HomepageService.findById(params.id);
+    const result = await PaperSubmissionsService.findById(params.id);
 
     if (!result)
     {
@@ -185,41 +184,9 @@ router.get('/getById/:id', async (ctx, next) =>
     }
 
     response.success = true;
-    response.message = `Homepage data retrived successfully`;
+    response.message = `Paper data retrived successfully`;
     response.data = {
-        homepageData : result,
-    };
-    ctx.response.status = StatusCodes.OK;
-    ctx.body = response;
-
-    next().then();
-});
-router.get('/edit', async (ctx, next) =>
-{
-    const response = new Response();
-
-    const result = await HomepageService.findToBeApproved();
-
-    if (!result)
-    {
-        ctx.response.status = StatusCodes.FORBIDDEN;
-
-        response.success = false;
-        response.message = "Cannot get homepage data";
-        response.data = {
-            message : '',
-        };
-
-        ctx.body = response;
-        next().then();
-
-        return;
-    }
-
-    response.success = true;
-    response.message = `Homepage data retrieved successfully`;
-    response.data = {
-        homepageData : result,
+        PaperData : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
@@ -227,7 +194,7 @@ router.get('/edit', async (ctx, next) =>
     next().then();
 });
 
-router.put('/update', async (ctx, next) =>
+router.put('/', async (ctx, next) =>
 {
     const response = new Response();
 
@@ -265,34 +232,44 @@ router.put('/update', async (ctx, next) =>
 
         return;
     }
-
-    const data = await HomepageService.update(params);
-
-    response.success = true;
-    response.message = `Homepage data updated successfully.`;
-    response.data = {
-        homepageData : data,
-    };
-    ctx.response.status = StatusCodes.OK;
-    ctx.body = response;
-
-    next().then();
-});
-
-router.put('/', koaJwt, async (ctx, next) =>
-{
-    const request = Object.setPrototypeOf(ctx.request.body, HomepageConfig.prototype);
-
-    const response = new Response();
-
-    if (!request)
+    if (!params.title)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
         response.success = false;
-        response.message = "required field(s) missing";
+        response.message = "Paper title is missing";
         response.data = {
-            message : "required field(s) missing",
+            message : "Paper title is missing",
+        };
+
+        ctx.body = response;
+        next().then();
+
+        return;
+    }
+    if (!params.category)
+    {
+        ctx.response.status = StatusCodes.BAD_REQUEST;
+
+        response.success = false;
+        response.message = "Paper category is missing";
+        response.data = {
+            message : "Paper category is missing",
+        };
+
+        ctx.body = response;
+        next().then();
+
+        return;
+    }
+    if (!params.description)
+    {
+        ctx.response.status = StatusCodes.BAD_REQUEST;
+
+        response.success = false;
+        response.message = "Paper description are missing";
+        response.data = {
+            message : "Paper description are missing",
         };
 
         ctx.body = response;
@@ -301,12 +278,12 @@ router.put('/', koaJwt, async (ctx, next) =>
         return;
     }
 
-    const result = await HomepageService.approve(request);
+    const data = await PaperSubmissionsService.update(params);
 
     response.success = true;
-    response.message = `Homepage approved successfully`;
+    response.message = `Paper data updated successfully.`;
     response.data = {
-        homepageData : result,
+        paperData : data,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
