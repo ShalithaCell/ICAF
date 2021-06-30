@@ -83,8 +83,8 @@ const MainNavbar = (props) =>
 							>
 								{/* <NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>*/}
 								{/* eslint-disable-next-line max-len */}
-								{/* <NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/publish')}>Publish</NavDropdown.Item>*/}
-								{/* <NavDropdown.Divider />*/}
+								 <NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/publish')}>Publish</NavDropdown.Item>
+								 <NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/view')}>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/templates')}>Templates</NavDropdown.Item>
