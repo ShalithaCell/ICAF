@@ -22,6 +22,21 @@ export default function ResearchPaperPublish()
 						<option value='audi'>Maths</option>
 						<option value='audi'>Engineering</option>
 						<option value='audi'>Other</option>
+						<option value='audi'>Science and Technology</option>
+						<option value='audi'>Maths</option>
+						<option value='audi'>Engineering</option>
+						<option value='audi'>Other</option>
+						<option value='volvo'>Architecture</option>
+						<option value='saab'>Software Engineering</option>
+						<option value='opel'>Data Science</option>
+						<option value='audi'>Science and Technology</option>
+						<option value='audi'>Maths</option>
+						<option value='audi'>Engineering</option>
+						<option value='audi'>Other</option>
+						<option value='audi'>Science and Technology</option>
+						<option value='audi'>Maths</option>
+						<option value='audi'>Engineering</option>
+						<option value='audi'>Other</option>
 					</select>
 
 				</div>
