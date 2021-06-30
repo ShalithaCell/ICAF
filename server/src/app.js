@@ -2,8 +2,6 @@ const Koa = require('koa');
 const koaBody = require('koa-body');
 const KoaStatic = require('koa-static');
 const cors = require('@koa/cors');
-const logger = require('koa-logger');
-// const loggerFile = require('koa-logging-middleware');
 const router = require('./api');
 const { dbContext, exceptionService, applicationDataSeeder } = require('./services');
 
@@ -14,7 +12,7 @@ const app = new Koa();
 
 app
     .use(koaBody({ formidable : {
-        uploadDir      : `${__dirname}/../public`, // directory where files will be uploaded
+        uploadDir      : `${__dirname}/../public/materials`, // directory where files will be uploaded
         keepExtensions : true, // keep file extension on upload
     },
     multipart  : true,

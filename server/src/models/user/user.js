@@ -18,6 +18,10 @@ const UserSchema = new Schema({
         type : Schema.Types.ObjectId,
         ref  : 'researchMaterial',
     } ],
+    materialsWorkshop : [ {
+        type : Schema.Types.ObjectId,
+        ref  : 'workshopMaterial',
+    } ],
     refreshTokens : [ {
         type : Schema.Types.ObjectId,
         ref  : 'refreshToken',
