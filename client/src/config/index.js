@@ -12,4 +12,5 @@ export const IDENTIFICATION_STORAGE = '548415148453168625468465686';
 export const LOGIN_ENDPOINT = `${BASE_URL}v1/auth`;
 export const REGISTRATION_ENDPOINT = `${BASE_URL}v1/registration`;
 export const REGISTRATION_TO_APPROVE_ENDPOINT = `${REGISTRATION_ENDPOINT}/edit`;
+export const CREATE_USERS_ENDPOINT = `${BASE_URL}v1/user/create/`;
 export const USER_REGISTRATION_ENDPOINT = `${BASE_URL}v1/user/create/user`;

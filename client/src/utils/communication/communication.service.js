@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-	BASE_URL,
+	BASE_URL, CREATE_USERS_ENDPOINT,
 	LOGIN_ENDPOINT,
 	REGISTRATION_ENDPOINT,
 	REGISTRATION_TO_APPROVE_ENDPOINT,
@@ -93,7 +93,6 @@ const communicationService = {
 	login	: (body, onSuccess, onError) => axios.post(LOGIN_ENDPOINT, body)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
-
 	registrationCreate	: (body, onSuccess, onError) => axios.post(REGISTRATION_ENDPOINT, body)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
@@ -108,6 +107,21 @@ const communicationService = {
 	registrationApprove	: (body, onSuccess, onError) => axios.put(REGISTRATION_ENDPOINT, body)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
+
+	createUser : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}user`, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	createReviewer : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}reviewer`, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	createEditor : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}editor`, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	createAdmin : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}admin`, body),
 
 	registerUser : (body, onSuccess, onError) => axios.post(USER_REGISTRATION_ENDPOINT, body, {
 		headers : {

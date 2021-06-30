@@ -21,6 +21,7 @@ import {
 	UserGuide,
 	RegistrationEditPage,
 	RegistrationViewPage,
+	UsersPage,
 	SignupForm,
 } from '../scenes';
 
@@ -31,6 +32,7 @@ const routes = [
 		children : [
 			{ path: 'changes', element: <ChangesList /> },
 			{ path: 'registration', element: <RegistrationEditPage /> },
+			{ path: 'users', element: <UsersPage /> },
 			{ path: 'dashboard', element: <SettingsView /> },
 			{ path: 'changes/view', element: <CommonChangesView /> },
 			{ path: 'settings', element: <SettingsView /> },
