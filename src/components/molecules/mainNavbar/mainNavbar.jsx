@@ -41,15 +41,6 @@ const MainNavbar = (props) =>
 								<a className='nav-link active text-white' aria-current='page' style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>Home |</a>
 							</li>
 							<li className='nav-item'>
-								<a className='nav-link  text-white' style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>About Us |</a>
-							</li>
-							<li className='nav-item'>
-								<a className='nav-link  text-white cus-pointer' style={{ cursor: 'pointer' }} onClick={() => navigate('/contactUs')}>Contact Us |</a>
-							</li>
-							<li className='nav-item'>
-								<a className='nav-link  text-white' style={{ cursor: 'pointer' }} onClick={() => navigate('/userGuide')}>User Guide |</a>
-							</li>
-							<li className='nav-item'>
 								<a className='nav-link active text-white' aria-current='page' style={{ cursor: 'pointer' }} onClick={() => navigate('/registration')}>Registration |</a>
 							</li>
 
@@ -75,9 +66,13 @@ const MainNavbar = (props) =>
 								id='navbarScrollingDropdown'
 							>
 								{/* <NavDropdown.Item href='/researchWorkshop/publish'>Workshop </NavDropdown.Item>*/}
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/researchWorkshop/publish')}>Publish</NavDropdown.Item>
+								<NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/researchWorkshopView/view')}>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/workshop/templates')}>Templates</NavDropdown.Item>
+								<NavDropdown.Divider />
+								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/callForWorkshops/view')}>Call for workshops</NavDropdown.Item>
 							</NavDropdown>
 
 							<NavDropdown
@@ -87,10 +82,22 @@ const MainNavbar = (props) =>
 								id='navbarScrollingDropdown'
 							>
 								{/* <NavDropdown.Item href='/research/publish'>Publish</NavDropdown.Item>*/}
+								{/* eslint-disable-next-line max-len */}
+								{/* <NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/publish')}>Publish</NavDropdown.Item>*/}
+								{/* <NavDropdown.Divider />*/}
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/view')}>View</NavDropdown.Item>
 								<NavDropdown.Divider />
 								<NavDropdown.Item style={{ cursor: 'pointer' }} onClick={() => navigate('/research/templates')}>Templates</NavDropdown.Item>
 							</NavDropdown>
+							<li className='nav-item'>
+								<a className='nav-link  text-white' style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>About Us |</a>
+							</li>
+							<li className='nav-item'>
+								<a className='nav-link  text-white cus-pointer' style={{ cursor: 'pointer' }} onClick={() => navigate('/contactUs')}>Contact Us |</a>
+							</li>
+							<li className='nav-item'>
+								<a className='nav-link  text-white' style={{ cursor: 'pointer' }} onClick={() => navigate('/userGuide')}>User Guide |</a>
+							</li>
 
 							<li className='nav-item'>
 								<form

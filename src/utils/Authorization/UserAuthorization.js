@@ -1,5 +1,5 @@
 import React from "react";
-import { SessionManagement } from "../index";
+import SessionManagement from "../session/SessionManagement";
 
 const checkAuthorization = (level) =>
 {
@@ -27,7 +27,7 @@ const checkAuthorization = (level) =>
 	{
 		const sessionData = JSON.parse(SessionManagement.GetSession());
 
-		if (!(sessionData.user.role.priority in authLevel))
+		if (!(authLevel.includes(sessionData.user.role.priority)))
 		{
 			return false;
 		}

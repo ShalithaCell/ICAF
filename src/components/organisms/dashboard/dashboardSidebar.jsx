@@ -10,9 +10,7 @@ import {
 	Typography,
 } from '@material-ui/core';
 import {
-	AlertCircle as AlertCircleIcon,
 	BarChart as BarChartIcon,
-	Lock as LockIcon,
 	Settings as SettingsIcon,
 	ShoppingBag as ShoppingBagIcon,
 	User as UserIcon,
@@ -20,14 +18,9 @@ import {
 	Users as UsersIcon,
 } from 'react-feather';
 import Paper from "@material-ui/core/Paper";
-import { Group, Subject } from "@material-ui/icons";
+import RateReviewIcon from '@material-ui/icons/RateReview';
+import { useSelector } from 'react-redux';
 import NavItem from '../../molecules/navItem/navItem';
-
-const user = {
-	avatar   : '/static/images/avatars/avatar_6.png',
-	jobTitle : 'Senior Developer',
-	name     : 'Katarina Smith',
-};
 
 const items = [
 	{
@@ -56,35 +49,22 @@ const items = [
 		title : 'Settings',
 	},
 	{
-		href  : '/login',
-		icon  : LockIcon,
-		title : 'Login',
+		href  : '/app/review',
+		icon  : RateReviewIcon,
+		title : 'Review',
 	},
 	{
 		href  : '/app/users',
 		icon  : UserPlusIcon,
 		title : 'Register',
 	},
-	{
-		href  : '/researchWorkshop/publish',
-		icon  : Group,
-		title : 'Workshop Publish',
-	},
-	{
-		href  : '/research/publish',
-		icon  : Subject,
-		title : 'Research Paper Publish',
-	},
-	{
-		href  : '/404',
-		icon  : AlertCircleIcon,
-		title : 'Error',
-	},
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) =>
 {
 	const location = useLocation();
+
+	const { user } = useSelector((state) => state.user);
 
 	useEffect(() =>
 	{
@@ -112,7 +92,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) =>
 			>
 				<Avatar
 					component={RouterLink}
-					src={user.avatar}
+					src='https://image.flaticon.com/icons/png/512/2922/2922510.png'
 					sx={{
 						cursor : 'pointer',
 						width  : 64,
@@ -130,7 +110,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) =>
 					color='textSecondary'
 					variant='body2'
 				>
-					{user.jobTitle}
+					{user.role.name}
 				</Typography>
 			</Box>
 			<Divider />

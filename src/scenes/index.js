@@ -6,6 +6,7 @@ export { default as AccessDenied } from "./accessDenied/accessDenied.component";
 export { default as ResearchPaperPublish } from "./researchpapers/researchPaperPublish.component";
 export { default as ResearchPaperView } from "./researchpapersview/researchPaperView.component";
 export { default as ResearchWorkShop } from "./workshop/researcWorkshop.component";
+export { default as CallForWorkshops } from "./callForWorkshops/callForWorkshops.component";
 export { default as ResearchWorkShopView } from "./workshopview/researcWorkshopView.component";
 export { default as CallForResearch } from "./callForResearch/callforresearch.component";
 export { default as SettingsView } from "./dashboard/settings/settings.component";
@@ -19,3 +20,5 @@ export { default as WorkshopTemplates } from "./workshoptemplates/workshopTample
 export { default as RegistrationViewPage } from "./registrationview/registrationView.component";
 export { default as UsersPage } from "./users/users.component";
 export { default as SignupForm } from "./signUp/signUp.component";
+export { default as ReviewPage } from "./dashboard/review/review.component";
+export { default as ResearchPaperViewPage } from "./dashboard/researchPapersView/researchPaperView.component";
