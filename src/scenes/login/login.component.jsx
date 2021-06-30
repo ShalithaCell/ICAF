@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Alert from '@material-ui/core/Alert';
 import Stack from '@material-ui/core/Stack';
 import { Copyright } from '../../components/organisms';
-import { communicationService } from '../../utils';
+import { communicationService, SessionManagement } from '../../utils';
 import { loginAction } from '../../utils/store/user/user';
 
 export default function Login()
@@ -53,8 +53,8 @@ export default function Login()
 				<Container maxWidth='sm'>
 					<Formik
 						initialValues={{
-							email    : 'demo@devias.io',
-							password : 'Password123',
+							email    : '',
+							password : '',
 						}}
 						validationSchema={Yup.object().shape({
 							email    : Yup.string().email('Must be a valid email').max(255).required('Email is required'),
@@ -71,7 +71,25 @@ export default function Login()
 									{
 										dispatch(loginAction(res.data));
 
-										navigate('/app/dashboard', { replace: true });
+										const { data } = res.data;
+
+										const tokenObj = {
+											token        : data.token,
+											refreshToken : data.refreshToken.token,
+											user         : data.user,
+										};
+
+										SessionManagement.GetSetSession(tokenObj);
+
+										// Redirect role user to home page and others to dashboard
+										if (data.user.role.priority === 4)
+										{
+											navigate('/', { replace: true });
+										}
+										else
+										{
+											navigate('/app/dashboard', { replace: true });
+										}
 
 										return;
 									}

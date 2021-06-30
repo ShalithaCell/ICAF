@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
 	Avatar,
 	Box,
-	Button,
 	Divider,
 	Drawer,
 	List,
@@ -21,6 +20,7 @@ import {
 	Users as UsersIcon,
 } from 'react-feather';
 import Paper from "@material-ui/core/Paper";
+import { Group, Subject } from "@material-ui/icons";
 import NavItem from '../../molecules/navItem/navItem';
 
 const user = {
@@ -36,14 +36,14 @@ const items = [
 		title : 'Dashboard',
 	},
 	{
-		href  : '/app/customers',
+		href  : '/app/registration',
 		icon  : UsersIcon,
-		title : 'Customers',
+		title : 'Registration',
 	},
 	{
-		href  : '/app/products',
+		href  : '/app/changes',
 		icon  : ShoppingBagIcon,
-		title : 'Products',
+		title : 'Changes List',
 	},
 	{
 		href  : '/app/account',
@@ -61,9 +61,19 @@ const items = [
 		title : 'Login',
 	},
 	{
-		href  : '/register',
+		href  : '/app/users',
 		icon  : UserPlusIcon,
 		title : 'Register',
+	},
+	{
+		href  : '/researchWorkshop/publish',
+		icon  : Group,
+		title : 'Workshop Publish',
+	},
+	{
+		href  : '/research/publish',
+		icon  : Subject,
+		title : 'Research Paper Publish',
 	},
 	{
 		href  : '/404',
@@ -137,43 +147,6 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) =>
 				</List>
 			</Box>
 			<Box sx={{ flexGrow: 1 }} />
-			<Box
-				sx={{
-					backgroundColor : 'background.default',
-					m               : 2,
-					p               : 2,
-				}}
-			>
-				<Typography
-					align='center'
-					gutterBottom
-					variant='h4'
-				>
-					Need more?
-				</Typography>
-				<Typography
-					align='center'
-					variant='body2'
-				>
-					Upgrade to PRO version and access 20 more screens
-				</Typography>
-				<Box
-					sx={{
-						display        : 'flex',
-						justifyContent : 'center',
-						pt             : 2,
-					}}
-				>
-					<Button
-						color='primary'
-						component='a'
-						href='https://react-material-kit.devias.io'
-						variant='contained'
-					>
-						See PRO version
-					</Button>
-				</Box>
-			</Box>
 		</Box>
 	);
 

@@ -27,7 +27,9 @@ const SessionManagement = {
 		}
 		else
 		{
-			sessionObj = Object.assign(session, obj);
+			const jsonObj = JSON.parse(session);
+
+			sessionObj = Object.assign(jsonObj, obj);
 		}
 
 		SessionManagement.SetSession(sessionObj);
