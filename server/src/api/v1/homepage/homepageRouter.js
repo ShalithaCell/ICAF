@@ -3,6 +3,7 @@ const StatusCodes = require('http-status-codes');
 const { Response, HomepageConfig } = require("../../../types");
 const { HomepageService } = require('../../../services');
 const { version } = require('../../../config');
+const { koaJwt } = require('../../../middlewares');
 
 // Prefix all routes with: /user
 const router = new Router({
@@ -112,7 +113,7 @@ router.get('/', async (ctx, next) =>
 {
     const response = new Response();
 
-    const result = await HomepageService.findAll();
+    const result = await HomepageService.find();
 
     if (!result)
     {
@@ -193,8 +194,40 @@ router.get('/getById/:id', async (ctx, next) =>
 
     next().then();
 });
+router.get('/edit', async (ctx, next) =>
+{
+    const response = new Response();
 
-router.put('/', async (ctx, next) =>
+    const result = await HomepageService.findToBeApproved();
+
+    if (!result)
+    {
+        ctx.response.status = StatusCodes.FORBIDDEN;
+
+        response.success = false;
+        response.message = "Cannot get homepage data";
+        response.data = {
+            message : '',
+        };
+
+        ctx.body = response;
+        next().then();
+
+        return;
+    }
+
+    response.success = true;
+    response.message = `Homepage data retrieved successfully`;
+    response.data = {
+        homepageData : result,
+    };
+    ctx.response.status = StatusCodes.OK;
+    ctx.body = response;
+
+    next().then();
+});
+
+router.put('/update', async (ctx, next) =>
 {
     const response = new Response();
 
@@ -239,6 +272,44 @@ router.put('/', async (ctx, next) =>
     response.message = `Homepage data updated successfully.`;
     response.data = {
         homepageData : data,
+    };
+    ctx.response.status = StatusCodes.OK;
+    ctx.body = response;
+
+    next().then();
+});
+
+router.put('/', koaJwt, async (ctx, next) =>
+{
+    console.log("in api");
+    const request = Object.setPrototypeOf(ctx.request.body, HomepageConfig.prototype);
+
+    console.log(request);
+
+    const response = new Response();
+
+    if (!request)
+    {
+        ctx.response.status = StatusCodes.BAD_REQUEST;
+
+        response.success = false;
+        response.message = "required field(s) missing";
+        response.data = {
+            message : "required field(s) missing",
+        };
+
+        ctx.body = response;
+        next().then();
+
+        return;
+    }
+
+    const result = await HomepageService.approve(request);
+
+    response.success = true;
+    response.message = `Homepage approved successfully`;
+    response.data = {
+        homepageData : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;

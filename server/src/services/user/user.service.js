@@ -60,7 +60,9 @@ const UserService = {
                 email          : request.email,
                 password       : request.password,
                 phone          : request.phone,
+                fileName       : request.fileName,
                 emailConfirmed : seedingStatus,
+                type           : request.type,
                 role           : role._id,
             });
 

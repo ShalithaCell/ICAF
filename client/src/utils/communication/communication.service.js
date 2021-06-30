@@ -1,9 +1,14 @@
 import axios from "axios";
 import {
 	BASE_URL,
+	CREATE_USERS_ENDPOINT,
 	LOGIN_ENDPOINT,
 	REGISTRATION_ENDPOINT,
 	REGISTRATION_TO_APPROVE_ENDPOINT,
+	USER_REGISTRATION_ENDPOINT,
+	RESEARCH_ENDPOINT,
+	WORKSHOPCALL_ENDPOINT,
+	WORKSHOP_ENDPOINT,
 } from "../../config";
 import SessionManagement from "../session/SessionManagement";
 
@@ -92,7 +97,6 @@ const communicationService = {
 	login	: (body, onSuccess, onError) => axios.post(LOGIN_ENDPOINT, body)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
-
 	registrationCreate	: (body, onSuccess, onError) => axios.post(REGISTRATION_ENDPOINT, body)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
@@ -100,11 +104,71 @@ const communicationService = {
 		.get(REGISTRATION_ENDPOINT)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
+	workshopCallGet	: (body, onSuccess, onError) => axios
+		.get(WORKSHOPCALL_ENDPOINT)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
 	registrationGetToBeApproved	: (body, onSuccess, onError) => axios
 		.get(REGISTRATION_TO_APPROVE_ENDPOINT)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 	registrationApprove	: (body, onSuccess, onError) => axios.put(REGISTRATION_ENDPOINT, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+
+	createUser : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}user`, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	createReviewer : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}reviewer`, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	createEditor : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}editor`, body)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	createAdmin : (body, onSuccess, onError) => axios
+		.post(`${CREATE_USERS_ENDPOINT}admin`, body),
+
+	registerUser : (body, onSuccess, onError) => axios.post(USER_REGISTRATION_ENDPOINT, body, {
+		headers : {
+			'Content-Type' : 'multipart/form-data',
+		} })
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+
+	researchUpload : (body, onSuccess, onError) => axios.post(
+		RESEARCH_ENDPOINT, body, {
+			headers : {
+				'Content-Type' : 'multipart/form-data',
+			} },
+	)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+
+	getResearch : (body, onSuccess, onError) => axios.get(
+		RESEARCH_ENDPOINT, body,
+	)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	approveResearch : (body, onSuccess, onError) => axios.put(
+		RESEARCH_ENDPOINT, body,
+	)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+	rejectResearch : (body, onSuccess, onError) => axios.delete(
+		`${RESEARCH_ENDPOINT}?id=${body}`, null,
+	)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
+
+	workshopUpload : (body, onSuccess, onError) => axios.post(
+		WORKSHOP_ENDPOINT, body, {
+			headers : {
+				'Content-Type' : 'multipart/form-data',
+			} },
+	)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
 };

@@ -5,11 +5,15 @@ import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import Container from "@material-ui/core/Container";
+import { Box, Button } from "@material-ui/core";
+import { useNavigate } from 'react-router-dom';
 import { communicationService } from '../../utils';
 
 const RegistrationViewPage = () =>
 {
 	const [ editData, setEditData ] = useState('<p></p>');
+
+	const navigate = useNavigate();
 
 	useEffect(() =>
 	{
@@ -46,6 +50,18 @@ const RegistrationViewPage = () =>
 							{/* eslint-disable-next-line react/no-danger */}
 							<div dangerouslySetInnerHTML={{ __html: editData }} className='ck-content' />
 						</>
+						<Box sx={{ py: 2 }}>
+							<Button
+								color='primary'
+								fullWidth
+								size='large'
+								type='submit'
+								variant='contained'
+								onClick={() => navigate('/signup')}
+							>
+								Proceed Registration
+							</Button>
+						</Box>
 					</CardContent>
 
 					<Divider />

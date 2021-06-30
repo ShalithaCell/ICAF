@@ -6,7 +6,6 @@ function HomepageConfig()
     this.aboutConference = '';
     this.keynoteSpeakers = '';
     this.guestSpeakers = '';
-    this.conferenceTracks = '';
     this.importantDates = '';
 }
 

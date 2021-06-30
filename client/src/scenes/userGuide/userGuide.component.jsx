@@ -56,9 +56,10 @@ export default function UserGuide()
 					</Col>
 				</Row>
 			</Container>
-
+<br/>
 			<ListGroup>
 
+				<h4 className='text-primary'>BEFORE THE EVENT</h4>
 				<ListGroup.Item variant='primary'>
 
 					{' BEFORE THE EVENT Depending on the event’s format and its requirements the organizers may need to\n'
@@ -73,6 +74,9 @@ export default function UserGuide()
 + 'The layout of each room can be specified according to the scheduled program. A\n'
 + 'change of layout is usually also easily possible during a session. It is useful to predefine various layouts (e.g. lobby, presentation, discussion – see images).'}
 				</ListGroup.Item>
+				<br/>
+
+				<h4 className='text-secondary'>DURING THE EVENT</h4>
 				<ListGroup.Item variant='secondary'>
 					{'DURING THE EVENT\n'
 				+ 'After finishing all preparatory tasks, the actual hosting starts. Hosting an online\n'
@@ -82,6 +86,9 @@ export default function UserGuide()
 				+ 'situations in advance. We recommend writing a script that lists all actions minute\n'
 				+ 'by minute. This is an example from the first day of the CA Online Conference 2019:\n'}
 				</ListGroup.Item>
+				<br/>
+
+				<h4 className='text-success'>OPENING THE EVENT</h4>
 				<ListGroup.Item variant='success'>
 					{'OPENING\n'
 				+ 'To start on schedule, the virtual conference room should open some minutes\n'
@@ -94,6 +101,9 @@ export default function UserGuide()
 				+ '“first name, last name, institution”). Leaving academic titles out can contribute to\n'
 				+ 'a more inclusive atmosphere.'}
 				</ListGroup.Item>
+				<br/>
+
+				<h4 className='text-danger'>DISCUSSIONS & INTERACTIVE SESSIONS</h4>
 				<ListGroup.Item variant='danger'>
 					{'DISCUSSIONS & INTERACTIVE SESSIONS\n'
 				+ 'To avoid background noise and echoes, for any online meeting we recommend\n'
@@ -106,6 +116,9 @@ export default function UserGuide()
 				+ 'the hosts can assign microphone rights to all participants and they can mute and\n'
 				+ 'unmute them on their own. '}
 				</ListGroup.Item>
+				<br/>
+
+				<h4 className='text-warning'>BREAK-OUT ROOMS</h4>
 				<ListGroup.Item variant='warning'>
 					{'BREAK-OUT ROOMS\n'
 				+ 'If several sessions are running in separate rooms in parallel we highly recommend\n'
@@ -116,6 +129,9 @@ export default function UserGuide()
 				+ 'not present in the hosting room, the hosts must always be prepared to jump in and\n'
 				+ 'take over if the facilitator experiences technical problems. '}
 				</ListGroup.Item>
+				<br/>
+
+				<h4 className='text-info'>AFTER THE EVENT</h4>
 				<ListGroup.Item variant='info'>
 					{'AFTER THE EVENT\n'
 				+ 'When the event has ended, the hosts can either leave the virtual room open for\n'
@@ -127,10 +143,11 @@ export default function UserGuide()
 				+ 'the session. If the event has been recorded the file(s) can be edited (cutting,\n'
 				+ 'anonymizing participants etc.) and made available to participants'}
 				</ListGroup.Item>
+				<br/>
+				<br/>
 			</ListGroup>
 
 		</div>
-
 
 	);
 }

@@ -9,6 +9,8 @@ const paperSubmissionSchema = new Schema({
     description   : String,
     publisherDate : String,
     file          : String,
+    isActive      : Boolean,
+    isApproved    : Boolean,
 }, { collection: 'paperSubmission' });
 
 module.exports = mongoose.model('paperSubmission', paperSubmissionSchema);

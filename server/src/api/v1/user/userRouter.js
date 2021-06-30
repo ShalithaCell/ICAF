@@ -3,7 +3,11 @@ const StatusCodes = require('http-status-codes');
 const validator = require("email-validator");
 const owasp = require('owasp-password-strength-test');
 const { NewUser, Response } = require("../../../types");
-const { userService, emailNotificationService, TokenService, dataManagerService } = require('../../../services');
+const { userService,
+    emailNotificationService,
+    TokenService,
+    dataManagerService,
+} = require('../../../services');
 const { version } = require('../../../config');
 const { koaJwt } = require('../../../middlewares');
 
@@ -111,7 +115,7 @@ const createUser = async (ctx, request) =>
         .sendUserConfirmationEmail(request.name, request.email, tokenData).then();
 
     response.success = true;
-    response.message = `You are now registered.A verification email has been sent to ${request.email}.`;
+    response.message = `You are now registered amd your request is processing.A verification email has been sent to ${request.email}.`;
     response.data = {
         user : result,
     };
@@ -138,6 +142,7 @@ router.post('/create/reviewer', async (ctx, next) =>
     const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
 
     request.role = 'reviewer';
+    request.type = 'auth';
 
     await createUser(ctx, request);
 
@@ -150,6 +155,7 @@ router.post('/create/editor', koaJwt, async (ctx, next) =>
     const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
 
     request.role = 'editor';
+    request.type = 'auth';
 
     await createUser(ctx, request);
 
@@ -162,6 +168,7 @@ router.post('/create/admin', koaJwt, async (ctx, next) =>
     const request = Object.setPrototypeOf(ctx.request.body, NewUser.prototype);
 
     request.role = 'admin';
+    request.type = 'auth';
 
     await createUser(ctx, request);
 
