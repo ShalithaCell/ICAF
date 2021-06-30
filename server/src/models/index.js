@@ -9,6 +9,7 @@ const ConferenceTracksSchema = require('./conferenceTracks/conferenceTracks');
 const WorkshopsConfig = require('./workshops/workshops');
 const WorkshopCallsConfig = require('./workshops/workshopCalls');
 const ResearchMaterialSchema = require('./materials/researchMaterials');
+const WorkshopMaterialSchema = require('./materials/workshopMaterials');
 
 module.exports = {
     User,
@@ -22,4 +23,5 @@ module.exports = {
     WorkshopsConfig,
     WorkshopCallsConfig,
     ResearchMaterialSchema,
+    WorkshopMaterialSchema,
 };
