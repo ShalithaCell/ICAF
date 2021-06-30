@@ -62,6 +62,7 @@ const UserService = {
                 phone          : request.phone,
                 fileName       : request.fileName,
                 emailConfirmed : seedingStatus,
+                type           : request.type,
                 role           : role._id,
             });
 

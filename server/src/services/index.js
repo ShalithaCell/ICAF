@@ -13,6 +13,7 @@ const RegistrationService = require('./registration/registration.service');
 const ConferenceTracksService = require('./conferenceTracks/conferenceTracks.service');
 const WorkshopsService = require('./workshops/workshops.service');
 const WorkshopCallsService = require('./workshops/workshopCalls.service');
+const MaterialService = require('./materials/material.service');
 
 module.exports = {
     dbContext,
@@ -30,4 +31,5 @@ module.exports = {
     ConferenceTracksService,
     WorkshopsService,
     WorkshopCallsService,
+    MaterialService,
 };

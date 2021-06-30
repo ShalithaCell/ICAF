@@ -14,3 +14,4 @@ export const REGISTRATION_ENDPOINT = `${BASE_URL}v1/registration`;
 export const REGISTRATION_TO_APPROVE_ENDPOINT = `${REGISTRATION_ENDPOINT}/edit`;
 export const CREATE_USERS_ENDPOINT = `${BASE_URL}v1/user/create/`;
 export const USER_REGISTRATION_ENDPOINT = `${BASE_URL}v1/user/create/user`;
+export const RESEARCH_ENDPOINT = `${BASE_URL}v1/research`;
