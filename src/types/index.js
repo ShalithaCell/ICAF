@@ -5,6 +5,8 @@ const Response = require('./response/response');
 const RefreshTokenModel = require('./auth/refreshToken/refreshToken');
 const HomepageConfig = require('./homepageConfig/homepageConfig');
 const PaperSubmissions = require('./paperSubmissions/paperSubmission');
+const ResearchMaterialType = require('./material/researchMaterialType');
+const WorkshopMaterialType = require('./material/workshopMaterialType');
 
 module.exports = {
     CredentialType,
@@ -14,4 +16,6 @@ module.exports = {
     RefreshTokenModel,
     HomepageConfig,
     PaperSubmissions,
+    ResearchMaterialType,
+    WorkshopMaterialType,
 };

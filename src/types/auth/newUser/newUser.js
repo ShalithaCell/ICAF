@@ -5,6 +5,7 @@ function NewUser()
     this.password = '';
     this.phone = '';
     this.role = '';
+    this.type = 'auth';
 }
 
 NewUser.prototype.isValid = function()

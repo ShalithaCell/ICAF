@@ -104,6 +104,32 @@ const WorkshopsService = {
             throw e;
         }
     },
+    approve : async (WorkshopsData) =>
+    {
+        const approveData = await WorkshopsService.findToBeApproved();
+
+        if (!approveData)
+        {
+            return null;
+        }
+
+        // remove old one
+        await WorkshopsConfig.remove({ isActive: true, isApproved: true });
+
+        // set approved
+        const data = await WorkshopsConfig
+            .updateOne({ isActive: true, isApproved: false }, {
+                isApproved  : true,
+                topic       : WorkshopsData.topic,
+                description : WorkshopsData.description,
+                speakers    : WorkshopsData.speakers,
+            }, (err, affected, resp) =>
+            {
+                console.log(resp);
+            });
+
+        return data;
+    },
 };
 
 module.exports = WorkshopsService;

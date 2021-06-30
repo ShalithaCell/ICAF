@@ -9,10 +9,19 @@ const UserSchema = new Schema({
     phone          : String,
     emailConfirmed : Boolean,
     fileName       : String,
+    type           : String,
     role           : {
         type : Schema.Types.ObjectId,
         ref  : 'role',
     },
+    materials : [ {
+        type : Schema.Types.ObjectId,
+        ref  : 'researchMaterial',
+    } ],
+    materialsWorkshop : [ {
+        type : Schema.Types.ObjectId,
+        ref  : 'workshopMaterial',
+    } ],
     refreshTokens : [ {
         type : Schema.Types.ObjectId,
         ref  : 'refreshToken',
