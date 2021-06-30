@@ -21,14 +21,12 @@ const HomepageConfigSchema = new Schema({
         occupation   : String,
         ProfileImage : String,
     } ],
-    conferenceTracks : [ {
-        topic       : String,
-        Description : String,
-    } ],
     importantDates : [ {
         date   : String,
         tittle : String,
     } ],
+    isActive   : Boolean,
+    isApproved : Boolean,
 
 }, { collection: 'homepageConfig' });
 

@@ -1,26 +1,24 @@
 const Router = require('koa-router');
 const StatusCodes = require('http-status-codes');
-const { Response, HomepageConfig } = require("../../../types");
-const { HomepageService } = require('../../../services');
+const { Response } = require("../../../types");
+const { WorkshopsService } = require('../../../services');
 const { version } = require('../../../config');
-const { koaJwt } = require('../../../middlewares');
 
 // Prefix all routes with: /user
 const router = new Router({
-    prefix : `${version.v1}/homepage`,
+    prefix : `${version.v1}/workshops`,
 });
-
 // Routes will go here
 
-// user sign in method
+// workshop call method
 router.post('/', async (ctx, next) =>
 {
-    const request = Object.setPrototypeOf(ctx.request.body, HomepageConfig.prototype);
+    const params = ctx.request.body;
 
     const response = new Response();
 
     // check data validation
-    if (!request.isValid())
+    if (!params)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
@@ -35,14 +33,14 @@ router.post('/', async (ctx, next) =>
 
         return;
     }
-    if (!request.title)
+    if (!params.topic)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
         response.success = false;
-        response.message = "Conference title is missing";
+        response.message = "Workshop topic is missing";
         response.data = {
-            message : "Conference title is missing",
+            message : "Workshop topic is missing",
         };
 
         ctx.body = response;
@@ -50,14 +48,14 @@ router.post('/', async (ctx, next) =>
 
         return;
     }
-    if (!request.subTitle)
+    if (!params.description)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
         response.success = false;
-        response.message = "Conference subtitle is missing";
+        response.message = "Workshop description is missing";
         response.data = {
-            message : "Conference subtitle is missing",
+            message : "Workshop description is missing",
         };
 
         ctx.body = response;
@@ -65,14 +63,14 @@ router.post('/', async (ctx, next) =>
 
         return;
     }
-    if (!request.aboutConference)
+    if (!params.speakers)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
         response.success = false;
-        response.message = "Conference details are missing";
+        response.message = "Workshop speakers are missing";
         response.data = {
-            message : "Conference details are missing",
+            message : "Workshop speakers are missing",
         };
 
         ctx.body = response;
@@ -81,14 +79,14 @@ router.post('/', async (ctx, next) =>
         return;
     }
 
-    const result = await HomepageService.create(request);
+    const result = await WorkshopsService.create(params);
 
     if (!result)
     {
         ctx.response.status = StatusCodes.FORBIDDEN;
 
         response.success = false;
-        response.message = "Cannot create homepage";
+        response.message = "Cannot create workshop";
         response.data = {
             message : result,
         };
@@ -99,9 +97,9 @@ router.post('/', async (ctx, next) =>
         return;
     }
     response.success = true;
-    response.message = `Homepage created successfully`;
+    response.message = `Workshop created successfully`;
     response.data = {
-        homepageData : result,
+        Workshop : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
@@ -113,7 +111,7 @@ router.get('/', async (ctx, next) =>
 {
     const response = new Response();
 
-    const result = await HomepageService.find();
+    const result = await WorkshopsService.findAll();
 
     if (!result)
     {
@@ -132,9 +130,9 @@ router.get('/', async (ctx, next) =>
     }
 
     response.success = true;
-    response.message = `Homepage data retrived successfully`;
+    response.message = `Workshop data retrived successfully`;
     response.data = {
-        homepageData : result,
+        Workshop : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
@@ -166,7 +164,7 @@ router.get('/getById/:id', async (ctx, next) =>
         return;
     }
 
-    const result = await HomepageService.findById(params.id);
+    const result = await WorkshopsService.findById(params.id);
 
     if (!result)
     {
@@ -185,41 +183,9 @@ router.get('/getById/:id', async (ctx, next) =>
     }
 
     response.success = true;
-    response.message = `Homepage data retrived successfully`;
+    response.message = `Workshop data retrived successfully`;
     response.data = {
-        homepageData : result,
-    };
-    ctx.response.status = StatusCodes.OK;
-    ctx.body = response;
-
-    next().then();
-});
-router.get('/edit', async (ctx, next) =>
-{
-    const response = new Response();
-
-    const result = await HomepageService.findToBeApproved();
-
-    if (!result)
-    {
-        ctx.response.status = StatusCodes.FORBIDDEN;
-
-        response.success = false;
-        response.message = "Cannot get homepage data";
-        response.data = {
-            message : '',
-        };
-
-        ctx.body = response;
-        next().then();
-
-        return;
-    }
-
-    response.success = true;
-    response.message = `Homepage data retrieved successfully`;
-    response.data = {
-        homepageData : result,
+        Workshop : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
@@ -227,7 +193,7 @@ router.get('/edit', async (ctx, next) =>
     next().then();
 });
 
-router.put('/update', async (ctx, next) =>
+router.put('/', async (ctx, next) =>
 {
     const response = new Response();
 
@@ -235,7 +201,7 @@ router.put('/update', async (ctx, next) =>
 
     console.log(params);
 
-    if (params.length <= 0)
+    if (!params)
     {
         ctx.response.status = StatusCodes.BAD_REQUEST;
 
@@ -266,47 +232,12 @@ router.put('/update', async (ctx, next) =>
         return;
     }
 
-    const data = await HomepageService.update(params);
+    const data = await WorkshopsService.update(params);
 
     response.success = true;
-    response.message = `Homepage data updated successfully.`;
+    response.message = `Workshop data updated successfully.`;
     response.data = {
-        homepageData : data,
-    };
-    ctx.response.status = StatusCodes.OK;
-    ctx.body = response;
-
-    next().then();
-});
-
-router.put('/', koaJwt, async (ctx, next) =>
-{
-    const request = Object.setPrototypeOf(ctx.request.body, HomepageConfig.prototype);
-
-    const response = new Response();
-
-    if (!request)
-    {
-        ctx.response.status = StatusCodes.BAD_REQUEST;
-
-        response.success = false;
-        response.message = "required field(s) missing";
-        response.data = {
-            message : "required field(s) missing",
-        };
-
-        ctx.body = response;
-        next().then();
-
-        return;
-    }
-
-    const result = await HomepageService.approve(request);
-
-    response.success = true;
-    response.message = `Homepage approved successfully`;
-    response.data = {
-        homepageData : result,
+        Workshop : data,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;
