@@ -46,6 +46,36 @@ export default function ResearchPaperView()
 					<h6>Research Paper: </h6>
 					<h6 className='text-muted'>Publish Date: </h6>
 
+					<h5>Category: </h5>
+					<h4 className='text-primary'>Title: </h4>
+					<h5>Publisher Name: </h5>
+					<h6>Description: </h6>
+					<h6>Research Paper: </h6>
+					<h6 className='text-muted'>Publish Date: </h6>
+
+
+					<h5>Category: </h5>
+					<h4 className='text-primary'>Title: </h4>
+					<h5>Publisher Name: </h5>
+					<h6>Description: </h6>
+					<h6>Research Paper: </h6>
+					<h6 className='text-muted'>Publish Date: </h6>
+
+					<h5>Category: </h5>
+					<h4 className='text-primary'>Title: </h4>
+					<h5>Publisher Name: </h5>
+					<h6>Description: </h6>
+					<h6>Research Paper: </h6>
+					<h6 className='text-muted'>Publish Date: </h6>
+
+					<h5>Category: </h5>
+					<h4 className='text-primary'>Title: </h4>
+					<h5>Publisher Name: </h5>
+					<h6>Description: </h6>
+					<h6>Research Paper: </h6>
+					<h6 className='text-muted'>Publish Date: </h6>
+
+
 					<button
 						type='submit' className='btn btn-warning'
 						style={{
