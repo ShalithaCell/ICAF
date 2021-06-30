@@ -3,6 +3,7 @@ const StatusCodes = require('http-status-codes');
 const { Response } = require("../../../types");
 const { WorkshopsService } = require('../../../services');
 const { version } = require('../../../config');
+const { koaJwt } = require('../../../middlewares');
 
 // Prefix all routes with: /user
 const router = new Router({
@@ -193,7 +194,7 @@ router.get('/getById/:id', async (ctx, next) =>
     next().then();
 });
 
-router.put('/', async (ctx, next) =>
+router.put('/update', async (ctx, next) =>
 {
     const response = new Response();
 
@@ -238,6 +239,40 @@ router.put('/', async (ctx, next) =>
     response.message = `Workshop data updated successfully.`;
     response.data = {
         Workshop : data,
+    };
+    ctx.response.status = StatusCodes.OK;
+    ctx.body = response;
+
+    next().then();
+});
+router.put('/', koaJwt, async (ctx, next) =>
+{
+    const data = ctx.request.body;
+
+    const response = new Response();
+
+    if (!data)
+    {
+        ctx.response.status = StatusCodes.BAD_REQUEST;
+
+        response.success = false;
+        response.message = "required field(s) missing";
+        response.data = {
+            message : "required field(s) missing",
+        };
+
+        ctx.body = response;
+        next().then();
+
+        return;
+    }
+
+    const result = await WorkshopsService.approve(data);
+
+    response.success = true;
+    response.message = `workshop approved successfully`;
+    response.data = {
+        data : result,
     };
     ctx.response.status = StatusCodes.OK;
     ctx.body = response;

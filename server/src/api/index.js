@@ -8,6 +8,7 @@ const homepageRouter = require('./v1/homepage/homepageRouter');
 const registrationRouter = require('./v1/registration/registrationRouter');
 const workshopRouter = require('./v1/workshops/workshopRouter');
 const workshopCallRouter = require('./v1/workshops/workshopCallRouter');
+const conferenceTracksRouter = require('./v1/conferenceTracks/conferenceTracksRouter');
 
 const router = combineRouters(
     applicationRouter,
@@ -18,6 +19,7 @@ const router = combineRouters(
     registrationRouter,
     workshopRouter,
     workshopCallRouter,
+    conferenceTracksRouter,
 
 );
 
