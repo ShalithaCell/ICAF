@@ -6,9 +6,10 @@ const userRouter = require('./v1/user/userRouter');
 const roleRouter = require('./v1/role/roleRouter');
 const homepageRouter = require('./v1/homepage/homepageRouter');
 const registrationRouter = require('./v1/registration/registrationRouter');
-const workshopRouter = require('./v1/workshops/workshopRouter');
+// const workshopRouter = require('./v1/workshops/workshopRouter');
 const workshopCallRouter = require('./v1/workshops/workshopCallRouter');
 const researchPaperRouter = require('./v1/materials/reseachPaperRouter');
+const workshopRouter = require('./v1/materials/workshopPaperRouter');
 
 const router = combineRouters(
     applicationRouter,
@@ -17,9 +18,10 @@ const router = combineRouters(
     roleRouter,
     homepageRouter,
     registrationRouter,
-    workshopRouter,
+    // workshopRouter,
     workshopCallRouter,
     researchPaperRouter,
+    workshopRouter,
 );
 
 module.exports = router;

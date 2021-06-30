@@ -6,7 +6,6 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import { useNavigate } from 'react-router-dom';
 import Alert from "@material-ui/core/Alert";
-import Snackbar from "@material-ui/core/Snackbar";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,43 +14,45 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TablePagination from "@material-ui/core/TablePagination";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import Slide from "@material-ui/core/Slide";
+import { Document, Page, pdfjs } from 'react-pdf';
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+import IconButton from "@material-ui/core/IconButton";
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import { communicationService } from '../../../utils';
+import { SERVER_URL } from '../../../config';
 
-function createData(name, calories, fat, carbs, protein)
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+
+function createData(id, publisherName, category, publishDate, pdfData)
 {
-	return { name, calories, fat, carbs, protein };
+	return { id, publisherName, category, publishDate, pdfData };
 }
 
-const rows = [
-	createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-	createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-	createData('Eclair', 262, 16.0, 24, 6.0),
-	createData('Cupcake', 305, 3.7, 67, 4.3),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-	createData('Gingerbread3', 356, 16.0, 49, 3.9),
-];
+// eslint-disable-next-line react/display-name
+const Transition = React.forwardRef((props, ref) => <Slide direction='up' ref={ref} {...props} />);
 
 const ResearchPaperViewPage = () =>
 {
 	const navigate = useNavigate();
 
+	const [ rows, setRows ] = useState([]);
+
 	const [ editData, setEditData ] = useState('');
-	const [ disabledButton, setDisabledButton ] = useState(true);
+	const [ pdfData, setPdfData ] = useState('');
+
+	const [ numPages, setNumPages ] = useState(null);
+	const [ pageNumber, setPageNumber ] = useState(1);
+
+	function onDocumentLoadSuccess({ pg })
+	{
+		setNumPages(pg);
+	}
+
 	const [ open, setOpen ] = React.useState(false);
 	const [ getError, setError ] = React.useState(false);
 
@@ -69,39 +70,87 @@ const ResearchPaperViewPage = () =>
 		setPage(0);
 	};
 
-	const handleClose = (event, reason) =>
+	const handleClickOpen = () =>
 	{
-		if (reason === 'clickaway')
-		{
-			return;
-		}
+		setOpen(true);
+	};
 
+	const handleClose = () =>
+	{
 		setOpen(false);
 	};
+
+	function fetchResearch()
+	{
+		communicationService.getResearch(null,
+			(res) =>
+			{
+				const { data } = res.data;
+
+				const rowData = [];
+
+				data.user.map((item) =>
+				{
+					rowData.push(
+						createData(item._id,
+							item.publisherName, item.category, item.publishDate, item.fileName),
+					);
+
+					return item;
+				});
+
+				setRows(rowData);
+			},
+			(err) =>
+			{
+
+			});
+	}
 
 	useEffect(async () =>
 	{
 		setEditData('');
 		setOpen(false);
 		setError(false);
+
+		fetchResearch();
 	}, []);
 
-	const onApproveHandle = (e) =>
+	const onApproveHandle = (e, id) =>
+	{
+		e.preventDefault();
+		communicationService.approveResearch({ id },
+			(res) =>
+			{
+				fetchResearch();
+			},
+			(err) =>
+			{
+			});
+	};
+
+	const onRejectHandle = (e, id) =>
 	{
 		e.preventDefault();
 
-		communicationService.registrationApprove({ description: editData },
+		communicationService.rejectResearch(id,
 			(res) =>
 			{
 				// debugger;
-				setOpen(true);
-				navigate('/app/changes');
+				fetchResearch();
 			},
 			(err) =>
 			{
 				// debugger;
-				setOpen(false);
 			});
+	};
+
+	const onViewPdf = (e, data) =>
+	{
+		e.preventDefault();
+
+		setOpen(true);
+		setPdfData(data);
 	};
 
 	return (
@@ -120,27 +169,50 @@ const ResearchPaperViewPage = () =>
 						<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 							<TableHead>
 								<TableRow>
-									<TableCell>Dessert (100g serving)</TableCell>
-									<TableCell align='right'>Calories</TableCell>
-									<TableCell align='right'>Fat&nbsp;(g)</TableCell>
-									<TableCell align='right'>Carbs&nbsp;(g)</TableCell>
-									<TableCell align='right'>Protein&nbsp;(g)</TableCell>
+									<TableCell>Researcher</TableCell>
+									<TableCell align='right'>Category</TableCell>
+									<TableCell align='right'>Publish Year</TableCell>
+									<TableCell align='right'>PDF</TableCell>
+									<TableCell align='right'>Approve</TableCell>
+									<TableCell align='right'>Reject</TableCell>
 								</TableRow>
 							</TableHead>
 							<TableBody>
 								{rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 									.map((row) => (
 										<TableRow
-											key={row.name}
+											key={row.id}
 											sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 										>
 											<TableCell component='th' scope='row'>
-												{row.name}
+												{row.publisherName}
 											</TableCell>
-											<TableCell align='right'>{row.calories}</TableCell>
-											<TableCell align='right'>{row.fat}</TableCell>
-											<TableCell align='right'>{row.carbs}</TableCell>
-											<TableCell align='right'>{row.protein}</TableCell>
+											<TableCell align='right'>{row.category}</TableCell>
+											<TableCell align='right'>{row.publishDate}</TableCell>
+											<TableCell align='right'>
+												<IconButton
+													color='primary' aria-label='upload picture' component='span'
+													onClick={(e) => onViewPdf(e, row.pdfData)}
+												>
+													<PictureAsPdfIcon />
+												</IconButton>
+											</TableCell>
+											<TableCell align='right'>
+												<Button
+													variant='outlined' color='success'
+													onClick={(e) => onApproveHandle(e, row.id)}
+												>
+													Approve
+												</Button>
+											</TableCell>
+											<TableCell align='right'>
+												<Button
+													variant='outlined' color='error'
+													onClick={(e) => onRejectHandle(e, row.id)}
+												>
+													Reject
+												</Button>
+											</TableCell>
 										</TableRow>
 									))}
 							</TableBody>
@@ -159,11 +231,28 @@ const ResearchPaperViewPage = () =>
 				<Divider />
 			</Card>
 			<Alert severity='error' hidden={!getError}>Something went wrong with data saving</Alert>
-			<Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-				<Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
-					Data approved successfully.
-				</Alert>
-			</Snackbar>
+			<Dialog
+				open={open}
+				TransitionComponent={Transition}
+				keepMounted
+				onClose={handleClose}
+				fullWidth
+				maxWidth='xl'
+				aria-labelledby='alert-dialog-slide-title'
+				aria-describedby='alert-dialog-slide-description'
+			>
+				<DialogTitle id='alert-dialog-slide-title'>
+					View PDF
+				</DialogTitle>
+				<DialogContent>
+					<Document
+						file={`${SERVER_URL}materials/${pdfData}`}
+						onLoadSuccess={onDocumentLoadSuccess}
+					>
+						<Page pageNumber={pageNumber} />
+					</Document>
+				</DialogContent>
+			</Dialog>
 		</>
 	);
 };

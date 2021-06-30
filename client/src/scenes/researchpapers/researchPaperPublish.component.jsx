@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import { Box, Button, Card, CardHeader, Divider } from "@material-ui/core";
 import { useDropzone } from 'react-dropzone';
 import Container from "@material-ui/core/Container";
-import { passwordStrength } from "check-password-strength";
 import Alert from "@material-ui/core/Alert";
 import { Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
