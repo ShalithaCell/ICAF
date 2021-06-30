@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Form, FormGroup, Dropdown, Row, Col } from "react-bootstrap";
+import { Form, FormGroup, Dropdown, Row, Col, NavDropdown } from "react-bootstrap";
 import { Container } from "@material-ui/core";
 
 export default function ContactUs()
@@ -45,7 +45,9 @@ export default function ContactUs()
 								<Form.Control as='textarea' rows={3} />
 							</Form.Group>
 							<br />
-							<button type='submit' className='btn btn-primary'>Submit</button>
+							<button type='submit' className='btn btn-primary'  onClick={() => alert("Successfully Send Message!")}>Submit</button>
+
+
 						</form>
 					</Col>
 				</Row>

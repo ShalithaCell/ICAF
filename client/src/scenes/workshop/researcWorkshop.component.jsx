@@ -113,7 +113,7 @@ export default function ResearchWorkShop()
 				</div>
 
 				<br />
-				<button type='submit' className='btn btn-primary'>Submit</button>
+				<button type='submit' className='btn btn-primary' onClick={() => alert("Successfully Send Data!")}>Submit</button>
 			</form>
 		</div>
 	);
