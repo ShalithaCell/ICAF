@@ -26,6 +26,7 @@ import {
 	SignupForm,
 	ReviewPage,
 	ResearchPaperViewPage,
+	WorkshopPaperViewPage,
 } from '../scenes';
 
 const routes = [
@@ -41,6 +42,7 @@ const routes = [
 			{ path: 'settings', element: <SettingsView /> },
 			{ path: 'review', element: <ReviewPage /> },
 			{ path: 'review/research', element: <ResearchPaperViewPage /> },
+			{ path: 'review/workshop', element: <WorkshopPaperViewPage /> },
 			{ path: '*', element: <Navigate to='/404' /> },
 		],
 	},

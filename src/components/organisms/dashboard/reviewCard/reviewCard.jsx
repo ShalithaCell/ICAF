@@ -86,7 +86,7 @@ const ReviewCard = ({ items, ...rest }) =>
 						<Button
 							variant='contained'
 							endIcon={<ArtTrackIcon />}
-							onClick={() => navigate('research')}
+							onClick={() => navigate(items.url)}
 						>
 							View
 						</Button>

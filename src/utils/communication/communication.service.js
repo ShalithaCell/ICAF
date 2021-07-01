@@ -171,6 +171,11 @@ const communicationService = {
 	)
 		.then((response) => onSuccess(response))
 		.catch((error) => onError(error.response ?? error.request ?? error)),
+	getWorkshop : (body, onSuccess, onError) => axios.get(
+		WORKSHOP_ENDPOINT, body,
+	)
+		.then((response) => onSuccess(response))
+		.catch((error) => onError(error.response ?? error.request ?? error)),
 };
 
 export default communicationService;

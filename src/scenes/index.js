@@ -22,3 +22,4 @@ export { default as UsersPage } from "./users/users.component";
 export { default as SignupForm } from "./signUp/signUp.component";
 export { default as ReviewPage } from "./dashboard/review/review.component";
 export { default as ResearchPaperViewPage } from "./dashboard/researchPapersView/researchPaperView.component";
+export { default as WorkshopPaperViewPage } from "./dashboard/workshopPaperViewComponent/workshopPaperViewComponent";
