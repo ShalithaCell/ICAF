@@ -10,6 +10,23 @@ const router = new Router({
     prefix : `${version.v1}/workshopPublish`,
 });
 
+router.get('/', koaJwt, async (ctx, next) =>
+{
+    const response = new Response();
+
+    const data = await MaterialService.getWorkshopFile();
+
+    response.success = true;
+    response.message = `workshop Paper get successfully.`;
+    response.data = {
+        user : data,
+    };
+    ctx.response.status = StatusCodes.OK;
+    ctx.body = response;
+
+    next().then();
+});
+
 router.post('/', koaJwt, async (ctx, next) =>
 {
     const request = Object.setPrototypeOf(ctx.request.body, WorkshopMaterialType.prototype);

@@ -7,6 +7,12 @@ const MaterialService = {
 
         return data;
     },
+    getWorkshopFile : async () =>
+    {
+        const data = await WorkshopMaterialSchema.find({ isActive: true, isApproved: false });
+
+        return data;
+    },
     saveResearchFile : async (materialObj) =>
     {
         const material = new ResearchMaterialSchema({
